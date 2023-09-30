@@ -1,0 +1,26 @@
+{
+  "name": "jsmimic-php",
+  "version": "1.0.0",
+  "description": "Make the transition from PHP to JavaScript smoother with jsmimic-php!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/Bryan-b/jsmimic-php.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bryan-b/jsmimic-php/issues"
+  },
+  "homepage": "https://github.com/Bryan-b/jsmimic-php#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  }
+}
