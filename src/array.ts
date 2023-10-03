@@ -88,9 +88,23 @@ function array_chunk<T>(arr: T[] | Record<string, T>, size: number, preserveKeys
  * @param columnKey - The column key to extract values from.
  * @returns An array containing values from the specified column.
  */
-function array_column<T>(inputArray: Record<string, T>[], columnKey: string): T[] {
-    return inputArray.map((item) => item[columnKey]);
+function array_column<T>(inputArray: Record<string, any>[], columnKey: string): T[] {
+    return inputArray.map((item) => {
+        let value = item;
+        const keys = columnKey.split('.');
+
+        for (const key of keys) {
+            if (value && typeof value === 'object' && key in value) {
+                value = value[key];
+            } else {
+                return undefined; // Key not found or encountered a non-object, return undefined
+            }
+        }
+
+        return value as T | undefined;
+    }).filter((value): value is T => value !== undefined) as T[]; // Type assertion
 }
+
 
 
 /**
@@ -103,7 +117,8 @@ function array_combine<T extends string | number, U>(keys: T[], values: U[]): Re
     const result: Record<string, U> = {};
 
     keys.forEach((key, index) => {
-        result[key.toString()] = values[index];
+        if(result.hasOwnProperty(key.toString()))  throw new Error('Duplicate keys are not allowed.');
+        result[String(key)] = values[index];
     });
 
     return result;
