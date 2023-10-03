@@ -130,17 +130,17 @@ function array_combine<T extends string | number, U>(keys: T[], values: U[]): Re
  * @param arr - The input array.
  * @returns An associative array where keys are unique values from the input array, and values are their counts.
  */
-function array_count_values<T extends string | number>(arr: T[]): Record<string, number> {
+function array_count_values<T extends string | number | boolean | undefined>(arr: T[]): Record<string, number> {
     const result: Record<string, number> = {};
 
-    arr.forEach((value) => {
-        const key = value.toString();
-        if (result[key] === undefined) {
+    for (const value of arr) {
+        const key = String(value);
+        if (!result[key]) {
             result[key] = 1;
         } else {
-            result[key]++;
+            result[key] += 1;
         }
-    });
+    }
 
     return result;
 }
