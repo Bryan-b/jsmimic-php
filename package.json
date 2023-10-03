@@ -1,6 +1,6 @@
 {
   "name": "jsmimic-php",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Make the transition from PHP to JavaScript smoother with jsmimic-php!",
   "main": "./dist/index.js",
   "scripts": {
