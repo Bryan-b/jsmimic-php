@@ -173,14 +173,14 @@ function array_diff_assoc<T>(arr1: Record<string, T>, arr2: Record<string, T>): 
  * @param arr2 - The second array.
  * @returns An array containing all the values from arr1 whose keys are not present in arr2.
  */
-function array_diff_key<T>(arr1: Record<string, T>, arr2: Record<string, any>): Record<string, T> {
+function array_diff_key<T>(arr1: Record<string, T>, arr2: Partial<Record<string, T>>): Record<string, T> {
     const result: Record<string, T> = {};
 
-    for (const key in arr1) {
-        if (arr1.hasOwnProperty(key) && !(key in arr2)) {
-            result[key] = arr1[key];
+    Object.keys(arr1).forEach((key) => {
+        if (arr1.hasOwnProperty(key) && !arr2.hasOwnProperty(key)) {
+            Object.assign(result, { [key]: arr1[key] });
         }
-    }
+    })
 
     return result;
 }
