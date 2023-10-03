@@ -157,8 +157,8 @@ function array_diff_assoc<T>(arr1: Record<string, T>, arr2: Record<string, T>): 
 
     for (const key in arr1) {
         if (arr1.hasOwnProperty(key)) {
-            if (!(key in arr2) || (arr1[key] !== arr2[key])) {
-                result[key] = arr1[key];
+            if (!arr2.hasOwnProperty(key) || arr1[key] !== arr2[key]) {
+                Object.assign(result, { [key]: arr1[key] });
             }
         }
     }
