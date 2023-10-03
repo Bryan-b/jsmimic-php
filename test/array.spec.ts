@@ -283,11 +283,206 @@ describe('array_combine', () => {
         expect(result).toEqual({ 'a': 1, 'b': 2, 'c': undefined });
     });
 });
-// describe('array_count_values', () => {});
-// describe('array_diff', () => {});
-// describe('array_diff_assoc', () => {});
-// describe('array_diff_key', () => {});
-// describe('array_diff_uassoc', () => {});
+
+describe('array_count_values', () => {
+    it('should return an empty object when an empty array is passed as input', () => {
+        const input: any[] = [];
+        const expectedOutput = {};
+        const result = array_count_values(input);
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should correctly count the values of an array of strings', () => {
+        const input = ['apple', 'banana', 'apple', 'orange', 'banana'];
+        const expectedOutput = {
+            apple: 2,
+            banana: 2,
+            orange: 1,
+        };
+        const result = array_count_values(input);
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should correctly count the values of an array with both strings and numbers', () => {
+        const input = ['apple', 1, 'banana', 2, 'apple', 1];
+        const expectedOutput = {
+            apple: 2,
+            banana: 1,
+            '1': 2,
+            '2': 1,
+        };
+        const result = array_count_values(input);
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should correctly handle an array with all identical elements', () => {
+        const input = [1, 1, 1, 1, 1];
+        const expectedOutput = {
+            '1': 5,
+        };
+        const result = array_count_values(input);
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should correctly handle an array with undefined values', () => {
+        const input = [undefined, undefined, undefined];
+        const expectedOutput = {
+            'undefined': 3,
+        };
+        const result = array_count_values(input);
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should correctly handle an array with objects as values', () => {
+        const input: any[] = [{ name: 'John' }, { name: 'Jane' }, { name: 'John' }, { name: 'Jane' }, { name: 'John' }];
+        const expectedOutput = { '[object Object]': 5 };
+        const result = array_count_values(input);
+        expect(result).toEqual(expectedOutput);
+    });
+});
+
+describe('array_diff_assoc', () => {
+    it('should return an empty object when both objects are empty', () => {
+        const arr1 = {};
+        const arr2 = {};
+        const result = array_diff_assoc(arr1, arr2);
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when both objects are identical', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = { a: 1, b: 2, c: 3 };
+        const result = array_diff_assoc(arr1, arr2);
+        expect(result).toEqual({});
+    });
+
+    it('should return the first object when objects have different keys', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = { d: 4, e: 5, f: 6 };
+        const result = array_diff_assoc(arr1, arr2);
+        expect(result).toEqual(arr1);
+    });
+
+    it('should return the values of the first object that are not present in the second object', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = { b: 2, c: 4, d: 5 };
+        const result = array_diff_assoc(arr1, arr2);
+        expect(result).toEqual({ a: 1, c: 3 });
+    });
+
+    it('should return an empty object when the first argument is an empty object', () => {
+        const arr1 = {};
+        const arr2 = { a: 1, b: 2, c: 3 };
+        const result = array_diff_assoc(arr1, arr2);
+        expect(result).toEqual({});
+    });
+});
+
+describe('array_diff_key', () => {
+    it('should return an empty object when both arrays are empty', () => {
+        const arr1 = {};
+        const arr2 = {};
+        const result = array_diff_key(arr1, arr2);
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when arr1 has no keys that are not in arr2', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = { key1: 'value1', key2: 'value2' };
+        const result = array_diff_key(arr1, arr2);
+        expect(result).toEqual({});
+    });
+
+    it('should return an object with keys and values from arr1 that are not in arr2', () => {
+        const arr1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const arr2 = { key1: 'value1', key2: 'value2' };
+        const result = array_diff_key(arr1, arr2);
+        expect(result).toEqual({ key3: 'value3' });
+    });
+
+    it('should return arr1 when all keys in arr1 are not present in arr2', () => {
+        const arr1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const arr2 = { key4: 'value4', key5: 'value5' };
+        const result = array_diff_key(arr1, arr2);
+        expect(result).toEqual(arr1);
+    });
+
+    it('should return an object with keys from arr1 that are not present in arr2', () => {
+        const arr1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const arr2 = { key2: 'value2', key4: 'value4' };
+        const result = array_diff_key(arr1, arr2);
+        expect(result).toEqual({ key1: 'value1', key3: 'value3' });
+    });
+
+    it('should return an object with keys from arr1 that are not present in arr2', () => {
+        const arr1 = { 1: 'value1', 2: 'value2', 3: 'value3' };
+        const arr2 = { key1: 'value1', key2: 'value2' };
+        const result = array_diff_key(arr1, arr2);
+        expect(result).toEqual({ 1: 'value1', 2: 'value2', 3: 'value3' });
+    });
+});
+
+describe('array_diff_uassoc', () => {
+    it('should return an empty object when both arrays are empty', () => {
+        const arr1 = {};
+        const arr2 = {};
+        const compareFunc = (a: any, b: any) => a - b;
+
+        const result = array_diff_uassoc(arr1, arr2, compareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an object with elements from arr1 that are not present in arr2', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = { d: 4, e: 5, f: 6 };
+        const compareFunc = (a: any, b: any) => a - b;
+
+        const result = array_diff_uassoc(arr1, arr2, compareFunc);
+
+        expect(result).toEqual({ a: 1, b: 2, c: 3 });
+    });
+
+    it('should return an object with elements from arr1 that are not present in arr2', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = { b: 2, d: 4, e: 5 };
+        const compareFunc = (a: any, b: any) => a - b;
+
+        const result = array_diff_uassoc(arr1, arr2, compareFunc);
+
+        expect(result).toEqual({ a: 1, c: 3 });
+    });
+
+    it('should return an empty object when arr1 is empty', () => {
+        const arr1 = {};
+        const arr2 = { a: 1, b: 2, c: 3 };
+        const compareFunc = (a: any, b: any) => a - b;
+
+        const result = array_diff_uassoc(arr1, arr2, compareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when arr2 is empty', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = {};
+        const compareFunc = (a: any, b: any) => a - b;
+
+        const result = array_diff_uassoc(arr1, arr2, compareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when all elements in arr1 are also present in arr2', () => {
+        const arr1 = { a: 1, b: 2, c: 3 };
+        const arr2 = { a: 1, b: 2, c: 3 };
+        const compareFunc = (a: any, b: any) => a - b;
+
+        const result = array_diff_uassoc(arr1, arr2, compareFunc);
+
+        expect(result).toEqual({});
+    });
+});
 // describe('array_diff_ukey', () => {});
 // describe('array_fill', () => {});
 // describe('array_fill_keys', () => {});

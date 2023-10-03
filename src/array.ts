@@ -130,17 +130,17 @@ function array_combine<T extends string | number, U>(keys: T[], values: U[]): Re
  * @param arr - The input array.
  * @returns An associative array where keys are unique values from the input array, and values are their counts.
  */
-function array_count_values<T extends string | number>(arr: T[]): Record<string, number> {
+function array_count_values<T extends string | number | boolean | undefined>(arr: T[]): Record<string, number> {
     const result: Record<string, number> = {};
 
-    arr.forEach((value) => {
-        const key = value.toString();
-        if (result[key] === undefined) {
+    for (const value of arr) {
+        const key = String(value);
+        if (!result[key]) {
             result[key] = 1;
         } else {
-            result[key]++;
+            result[key] += 1;
         }
-    });
+    }
 
     return result;
 }
@@ -157,8 +157,8 @@ function array_diff_assoc<T>(arr1: Record<string, T>, arr2: Record<string, T>): 
 
     for (const key in arr1) {
         if (arr1.hasOwnProperty(key)) {
-            if (!(key in arr2) || (arr1[key] !== arr2[key])) {
-                result[key] = arr1[key];
+            if (!arr2.hasOwnProperty(key) || arr1[key] !== arr2[key]) {
+                Object.assign(result, { [key]: arr1[key] });
             }
         }
     }
@@ -173,14 +173,14 @@ function array_diff_assoc<T>(arr1: Record<string, T>, arr2: Record<string, T>): 
  * @param arr2 - The second array.
  * @returns An array containing all the values from arr1 whose keys are not present in arr2.
  */
-function array_diff_key<T>(arr1: Record<string, T>, arr2: Record<string, any>): Record<string, T> {
+function array_diff_key<T>(arr1: Record<string, T>, arr2: Partial<Record<string, T>>): Record<string, T> {
     const result: Record<string, T> = {};
 
-    for (const key in arr1) {
-        if (arr1.hasOwnProperty(key) && !(key in arr2)) {
-            result[key] = arr1[key];
+    Object.keys(arr1).forEach((key) => {
+        if (arr1.hasOwnProperty(key) && !arr2.hasOwnProperty(key)) {
+            Object.assign(result, { [key]: arr1[key] });
         }
-    }
+    })
 
     return result;
 }
@@ -196,12 +196,18 @@ function array_diff_key<T>(arr1: Record<string, T>, arr2: Record<string, any>): 
 function array_diff_uassoc<T>(arr1: Record<string, T>, arr2: Record<string, T>, compareFunc: (a: T, b: T) => number): Record<string, T> {
     const result: Record<string, T> = {};
 
-    for (const key in arr1) {
-        if (arr1.hasOwnProperty(key)) {
-            if (!(key in arr2) || compareFunc(arr1[key], arr2[key]) !== 0) {
-                result[key] = arr1[key];
+    if (Object.keys(arr1).length === Object.keys(arr2).length) {
+        for (const key in arr1) {
+            if (arr1.hasOwnProperty(key)) {
+                if (!(key in arr2) || compareFunc(arr1[key], arr2[key]) !== 0) {
+                    result[key] = arr1[key];
+                }
             }
         }
+    }
+
+    if (Object.keys(result).length === 0) {
+        return {};
     }
 
     return result;
