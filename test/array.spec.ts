@@ -483,8 +483,123 @@ describe('array_diff_uassoc', () => {
         expect(result).toEqual({});
     });
 });
-// describe('array_diff_ukey', () => {});
-// describe('array_fill', () => {});
+
+describe('array_diff_ukey', () => {
+    it('should return an empty object when arr1 is empty', () => {
+        const arr1 = {};
+        const arr2 = { key1: 'value1', key2: 'value2' };
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_diff_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when arr2 is empty', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = {};
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_diff_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an object with values from arr1 that have different keys in arr2, even when arr2 has extra keys', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = { key3: 'value1', key4: 'value2' };
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_diff_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({ key1: 'value1', key2: 'value2' });
+    });
+
+    it('should return an object with keys from arr1 not present in arr2, even when arr2 has values set to false', () => {
+        const arr1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const arr2 = { key1: false, key4: 'value4' };
+        const keyCompareFunc = (a: string, b: string) => 0;
+
+        const result = array_diff_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({ key2: 'value2', key3: 'value3' });
+    });
+});
+
+describe('array_diff', () => {
+    it('should return an empty array when both input arrays are empty', () => {
+        const arr1: number[] = [];
+        const arr2: number[] = [];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([]);
+    });
+
+    it('should return arr1 when arr2 is empty', () => {
+      const arr1 = [1, 2, 3];
+      const arr2: number[] = [];
+      const result = array_diff(arr1, arr2);
+      expect(result).toEqual(arr1);
+    });
+
+    it('should return an array containing all values from arr1 that are not present in arr2', () => {
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = [3, 4, 5, 6, 7];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([1, 2]);
+    });
+
+    it('should return an empty array when arr1 is empty', () => {
+        const arr1: number[] = [];
+        const arr2 = [1, 2, 3];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an array containing all values from arr1 when arr2 contains no common values', () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([1, 2, 3]);
+    });
+
+    it('should return an empty array when arr1 and arr2 have the same values', () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [1, 2, 3];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an array with unique values from arr1 when arr2 contains duplicates', () => {
+        const arr1: number[] = [1, 2, 3, 4, 5];
+        const arr2: number[] = [3, 4, 5, 6, 7];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([1, 2]);
+    });
+
+    it('should return an array with unique values from arr1 when arr1 and arr2 both contain duplicates', () => {
+        const arr1: number[] = [1, 2, 2, 3, 3, 4, 5];
+        const arr2: number[] = [2, 3, 4, 6, 7];
+        const result = array_diff(arr1, arr2);
+        expect(result).toEqual([1, 5]);
+    });
+});
+
+describe('array_fill', () => {
+    it('should return an array filled with the specified value when given valid start index, number of elements and value', () => {
+        const result = array_fill(0, 3, 'test');
+        expect(result).toEqual(['test', 'test', 'test']);
+    });
+
+    it('should return an empty array when given num as 0', () => {
+        const result = array_fill(0, 0, 'test');
+        expect(result).toEqual([]);
+    });
+
+    it('should return an array with a single element when given num as 1', () => {
+        const result = array_fill(0, 1, 'test');
+        expect(result).toEqual(['test']);
+    });
+});
 // describe('array_fill_keys', () => {});
 // describe('array_filter', () => {});
 // describe('array_flip', () => {});

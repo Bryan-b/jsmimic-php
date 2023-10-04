@@ -1,11 +1,11 @@
 {
   "name": "jsmimic-php",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Access familiar PHP functions in JavaScript with jsmimic-php",
   "main": "index.js",
   "scripts": {
     "test": "jest  --verbose  --no-cache",
-    "publish": "npm run test && npm publish"
+    "distribute": "npm run test && tsc && npm publish"
   },
   "repository": {
     "type": "git",
