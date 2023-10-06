@@ -318,8 +318,8 @@ function array_flip<T extends string | number | symbol | null | undefined | bool
  * @param arr2 - The second array.
  * @returns An array containing all values from arr1 that are present in arr2.
  */
-function array_intersect_assoc<T>(arr1: Record<string, T>, arr2: Record<string, T>): Record<string, T> {
-    const result: Record<string, T> = {};
+function array_intersect_assoc<T>(arr1: Record<string | number | symbol, T>, arr2: Record<string | number | symbol, T>): Record<string | number | symbol, T> {
+    const result: Record<string | number | symbol, T> = {};
 
     for (const key in arr1) {
         if (arr1.hasOwnProperty(key) && (key in arr2) && arr1[key] === arr2[key]) {
