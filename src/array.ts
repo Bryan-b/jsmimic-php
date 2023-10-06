@@ -377,15 +377,16 @@ function array_intersect_uassoc<T>(arr1: Record<string, T>, arr2: Record<string,
  * @param keyCompareFunc - Callback function to compare keys.
  * @returns An array containing all values from arr1 whose keys are present in arr2.
  */
-function array_intersect_ukey<T>(arr1: Record<string, T>, arr2: Record<string, any>, keyCompareFunc: (a: string, b: string) => number): Record<string, T> {
+function array_intersect_ukey<T>(arr1: Record<string, T>, arr2: Record<string, any>, keyCompareFunc: (a: any, b: any) => number): Record<string, T> {
     const result: Record<string, T> = {};
 
     for (const key1 in arr1) {
         if (arr1.hasOwnProperty(key1)) {
-            const key2 = Object.keys(arr2).find((key) => keyCompareFunc(key1, key));
-
-            if (key2 !== undefined) {
-                result[key1] = arr1[key1];
+            for (const key2 in arr2) {
+                if (arr2.hasOwnProperty(key2) && keyCompareFunc(key1, key2) === 0) {
+                    result[key1] = arr1[key1];
+                    break; // Break to avoid adding the same key multiple times
+                }
             }
         }
     }
@@ -401,7 +402,51 @@ function array_intersect_ukey<T>(arr1: Record<string, T>, arr2: Record<string, a
  * @returns An array containing all values from arr1 that are present in arr2.
  */
 function array_intersect<T>(arr1: T[], arr2: T[]): T[] {
-    return arr1.filter((item) => arr2.includes(item));
+    function deepEqual(obj1: any, obj2: any): boolean {
+        // Check if the objects are of the same type
+        if (typeof obj1 !== typeof obj2) {
+            return false;
+        }
+
+        if (obj1 === obj2 || Number.isNaN(obj1) && Number.isNaN(obj2)) {
+            return true;
+        }
+
+        if (Array.isArray(obj1) && Array.isArray(obj2)) {
+            if (obj1.length !== obj2.length) {
+                return false;
+            }
+
+            for (let i = 0;i < obj1.length;i++) {
+                if (!deepEqual(obj1[i], obj2[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        if (typeof obj1 === 'object' && typeof obj2 === 'object') {
+            const keys1 = Object.keys(obj1);
+            const keys2 = Object.keys(obj2);
+
+            if (keys1.length !== keys2.length) {
+                return false;
+            }
+
+            for (const key of keys1) {
+                if (!deepEqual(obj1[key], obj2[key])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    return arr1.filter((item1) => arr2.some((item2) => deepEqual(item1, item2)));
 }
 
 

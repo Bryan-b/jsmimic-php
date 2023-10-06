@@ -973,5 +973,108 @@ describe('array_intersect_uassoc', () => {
     });
 });
 
-// describe('array_intersect_ukey', () => {});
-// describe('array_intersect', () => {});
+describe('array_intersect_ukey', () => {
+    it('should return an empty object when both arrays are empty', () => {
+        const arr1 = {};
+        const arr2 = {};
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_intersect_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when the first array has no keys in common with the second array', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = { key3: 'value3', key4: 'value4' };
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_intersect_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an object with values from the first array that have keys in common with the second array', () => {
+        const arr1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const arr2 = { key2: 'value4', key3: 'value5' };
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_intersect_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({ key2: 'value2', key3: 'value3' });
+    });
+
+    it('should return an empty object when the second array is empty', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = {};
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_intersect_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should return an empty object when the first array is empty', () => {
+        const arr1 = {};
+        const arr2 = { key1: 'value1', key2: 'value2' };
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        const result = array_intersect_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(result).toEqual({});
+    });
+
+    it('should not modify the second array', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = { key1: 'value3', key2: 'value4' };
+        const keyCompareFunc = (a: string, b: string) => a.localeCompare(b);
+
+        array_intersect_ukey(arr1, arr2, keyCompareFunc);
+
+        expect(arr2).toEqual({ key1: 'value3', key2: 'value4' });
+    });
+});
+
+describe('array_intersect', () => {
+    it('should return an empty array when both input arrays are empty', () => {
+        const arr1: number[] = [];
+        const arr2: number[] = [];
+        const result = array_intersect(arr1, arr2);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an empty array when there are no common elements between the input arrays', () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+        const result = array_intersect(arr1, arr2);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an array with common elements when there are common elements between the input arrays', () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [2, 3, 4];
+        const result = array_intersect(arr1, arr2);
+        expect(result).toEqual([2, 3]);
+    });
+
+    it('should handle arrays with large number of elements', () => {
+        const arr1 = Array.from({ length: 10000 }, (_, i) => i);
+        const arr2 = Array.from({ length: 10000 }, (_, i) => i + 5000);
+        const result = array_intersect(arr1, arr2);
+        expect(result).toEqual(Array.from({ length: 5000 }, (_, i) => i + 5000));
+    });
+
+    it('should handle arrays with complex objects as elements', () => {
+        const arr1 = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }, { id: 3, name: 'Bob' }];
+        const arr2 = [{ id: 2, name: 'Jane' }, { id: 4, name: 'Alice' }];
+        const result = array_intersect(arr1, arr2);
+        expect(result).toEqual([{ id: 2, name: 'Jane' }]);
+    });
+
+    it('should return an array with common elements when there are duplicate common elements between the input arrays', () => {
+        const arr1 = [1, 2, 2, 3];
+        const arr2 = [2, 2, 3, 4];
+        const result = array_intersect(arr1, arr2);
+        expect(result).toEqual([2, 2, 3]);
+    });
+});
