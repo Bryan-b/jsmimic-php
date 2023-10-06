@@ -240,7 +240,7 @@ exports.array_fill = array_fill;
  * @param value - Value to insert.
  * @returns An associative array filled with the specified value.
  */
-function array_fill_keys(keys, value) {
+function array_fill_keys(keys, value = undefined) {
     const result = {};
     keys.forEach((key) => {
         result[key] = value;
@@ -268,7 +268,7 @@ function array_flip(inputArray) {
     for (const key in inputArray) {
         if (inputArray.hasOwnProperty(key)) {
             const value = inputArray[key];
-            result[value.toString()] = key;
+            result[String(value)] = key;
         }
     }
     return result;
