@@ -271,7 +271,7 @@ function array_fill<T>(start: number, num: number, value: T): T[] {
  * @param value - Value to insert.
  * @returns An associative array filled with the specified value.
  */
-function array_fill_keys<T>(keys: string[], value: T): Record<string, T> {
+function array_fill_keys<T>(keys: string[], value: T = undefined as any): Record<string, T> {
     const result: Record<string, T> = {};
 
     keys.forEach((key) => {
