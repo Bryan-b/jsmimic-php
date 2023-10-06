@@ -298,13 +298,13 @@ function array_filter<T>(arr: T[], callback: (value: T, index: number, array: T[
  * @param inputArray - The input associative array.
  * @returns An associative array with keys and values swapped.
  */
-function array_flip<T extends string | number | symbol>(inputArray: Record<string, T>): Record<string, string> {
+function array_flip<T extends string | number | symbol | null | undefined | boolean>(inputArray: Record<string, T>): Record<string, string> {
     const result: Record<string, string> = {};
 
     for (const key in inputArray) {
         if (inputArray.hasOwnProperty(key)) {
             const value = inputArray[key];
-            result[value.toString()] = key;
+            result[String(value)] = key;
         }
     }
 
