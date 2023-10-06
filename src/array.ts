@@ -377,15 +377,16 @@ function array_intersect_uassoc<T>(arr1: Record<string, T>, arr2: Record<string,
  * @param keyCompareFunc - Callback function to compare keys.
  * @returns An array containing all values from arr1 whose keys are present in arr2.
  */
-function array_intersect_ukey<T>(arr1: Record<string, T>, arr2: Record<string, any>, keyCompareFunc: (a: string, b: string) => number): Record<string, T> {
+function array_intersect_ukey<T>(arr1: Record<string, T>, arr2: Record<string, any>, keyCompareFunc: (a: any, b: any) => number): Record<string, T> {
     const result: Record<string, T> = {};
 
     for (const key1 in arr1) {
         if (arr1.hasOwnProperty(key1)) {
-            const key2 = Object.keys(arr2).find((key) => keyCompareFunc(key1, key));
-
-            if (key2 !== undefined) {
-                result[key1] = arr1[key1];
+            for (const key2 in arr2) {
+                if (arr2.hasOwnProperty(key2) && keyCompareFunc(key1, key2) === 0) {
+                    result[key1] = arr1[key1];
+                    break; // Break to avoid adding the same key multiple times
+                }
             }
         }
     }
