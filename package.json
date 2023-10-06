@@ -1,6 +1,6 @@
 {
   "name": "jsmimic-php",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Access familiar PHP functions in JavaScript with jsmimic-php",
   "main": "index.js",
   "scripts": {
