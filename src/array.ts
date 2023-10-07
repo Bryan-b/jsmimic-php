@@ -460,7 +460,6 @@ function array_is_list<T>(arr: Record<string, T>): boolean {
     return keys.every((key, index) => key === index.toString());
 }
 
-
 /**
  * Checks if a specific key exists in an array.
  * @param key - The key to check.

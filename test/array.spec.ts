@@ -1188,6 +1188,7 @@ describe('array_key_first', () => {
         expect(array_key_first(obj)).toBeUndefined();
     });
 });
+
 describe('array_key_last', () => {
     it('should return the only key when the array has length 1', () => {
         const arr = { key1: 'value1' };
@@ -1219,7 +1220,26 @@ describe('array_key_last', () => {
         expect(array_key_last(arr)).toBe('key3');
     });
 });
-describe('array_keys', () => {});
+
+describe('array_keys', () => {
+    it('should return an empty array when input array is empty', () => {
+        const input = {};
+        const result = array_keys(input);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an array of keys when input array is not empty', () => {
+        const input = { a: 1, b: 2, c: 3 };
+        const result = array_keys(input);
+        expect(result).toEqual(['a', 'b', 'c']);
+    });
+
+    it('should return an array of string keys when input array has only string keys', () => {
+        const input = { 'a': 1, 'b': 2, 'c': 3 };
+        const result = array_keys(input);
+        expect(result).toEqual(['a', 'b', 'c']);
+    });
+});
 describe('array_map', () => {});
 describe('array_merge', () => {});
 describe('array_merge_recursive', () => {});
