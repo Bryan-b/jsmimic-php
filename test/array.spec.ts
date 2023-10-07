@@ -17,7 +17,26 @@ import {
     array_intersect_assoc,
     array_intersect_key,
     array_intersect_uassoc,
-    array_intersect_ukey
+    array_intersect_ukey,
+    array_is_list,
+    array_key_exists,
+    array_key_first,
+    array_key_last,
+    array_keys,
+    array_map,
+    array_merge,
+    array_merge_recursive,
+    array_multisort,
+    array_pad,
+    array_product,
+    array_push,
+    array_rand,
+    array_reduce,
+    array_replace,
+    array_reverse,
+    array_search,
+    array_shift,
+    array_slice
 } from '../src/array';
 
 describe('array_change_key_case', () => {
@@ -1078,3 +1097,30 @@ describe('array_intersect', () => {
         expect(result).toEqual([2, 2, 3]);
     });
 });
+
+describe('array_is_list', () => {
+    it('should return true when input array has numerical keys starting from 0', () => {
+      const arr = {0: 'a', 1: 'b', 2: 'c'};
+      expect(array_is_list(arr)).toBe(true);
+    });
+
+    it('should return true when input array is empty', () => {
+        const arr = {};
+        expect(array_is_list(arr)).toBe(true);
+    });
+
+    it('should return true when input array has a single element with key 0', () => {
+        const arr = { 0: 'a' };
+        expect(array_is_list(arr)).toBe(true);
+    });
+
+    it('should return false when input array has numerical keys not starting from 0', () => {
+        const arr = { 1: 'a', 2: 'b', 3: 'c' };
+        expect(array_is_list(arr)).toBe(false);
+    });
+
+    it('should return false when input array has missing keys', () => {
+        const arr = { 0: 'a', 2: 'b', 3: 'c' };
+        expect(array_is_list(arr)).toBe(false);
+    });
+})
