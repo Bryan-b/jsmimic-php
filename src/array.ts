@@ -553,37 +553,6 @@ function array_merge_recursive<T extends Record<string, any>>(...arrays: T[]): T
     return result;
 }
 
-
-/**
- * Sorts multiple arrays and maintains their correlation.
- * @param arr - The input arrays to sort.
- * @returns An array of sorted arrays.
- */
-function array_multisort<T>(...arr: T[][]): T[][] {
-    const keys = arr.map(() => 0);
-    const result: T[][] = [];
-
-    // Create an array of arrays with the same elements as input arrays
-    for (let i = 0;i < arr.length;i++) {
-        result[i] = [...arr[i]];
-    }
-
-    // Sort the result array using the first array's values as keys
-    result.sort((a, b) => {
-        for (let i = 0;i < a.length;i++) {
-            const key = a[i];
-            const otherKey = b[i];
-
-            if (key < otherKey) return -1;
-            if (key > otherKey) return 1;
-        }
-
-        return 0;
-    });
-
-    return result;
-}
-
 /**
  * Pad an array to a specified length with a value.
  * @param arr - The input array.
@@ -591,7 +560,9 @@ function array_multisort<T>(...arr: T[][]): T[][] {
  * @param value - The value to pad with.
  * @returns A new array padded to the specified length.
  */
-function array_pad<T>(arr: T[], size: number, value: T): T[] {
+function array_pad<T>(arr: T[] | null, size: number, value: T): T[] {
+    if (arr === null) return array_fill(0, size, value);
+    if (size < 0) throw new Error('Size cannot be negative');
     if (size <= arr.length) return arr;
 
     const padCount = size - arr.length;
@@ -752,7 +723,6 @@ export {
     array_map,
     array_merge,
     array_merge_recursive,
-    array_multisort,
     array_pad,
     array_product,
     array_push,
