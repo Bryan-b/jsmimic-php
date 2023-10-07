@@ -509,6 +509,23 @@ function array_map<T, U>(arr: T[], callback: (value: T, index: number, array: T[
     return arr.map(callback);
 }
 
+
+/**
+ * Merges two or more arrays.
+ * @param arrays - Arrays to merge.
+ * @returns A new array containing the merged elements.
+ */
+function array_merge<T extends any[]>(...arrays: T): Array<T[any]> {
+    const result: Array<T[any]> = [];
+
+    for (const arr of arrays) {
+        result.push(...arr);
+    }
+
+    return result;
+}
+
+
 /**
  * Recursively merges two or more arrays.
  * @param arrays - Arrays to merge.
@@ -536,20 +553,6 @@ function array_merge_recursive<T extends Record<string, any>>(...arrays: T[]): T
     return result;
 }
 
-/**
- * Merges two or more arrays.
- * @param arrays - Arrays to merge.
- * @returns A new array containing the merged elements.
- */
-function array_merge<T>(...arrays: T[][]): T[] {
-    const result: T[] = [];
-
-    for (const arr of arrays) {
-        result.push(...arr);
-    }
-
-    return result;
-}
 
 /**
  * Sorts multiple arrays and maintains their correlation.
@@ -760,4 +763,4 @@ export {
     array_search,
     array_shift,
     array_slice
-}
+}        
