@@ -716,7 +716,17 @@ function array_shift<T>(arr: T[]): T | undefined {
  * @returns A new array containing the extracted elements.
  */
 function array_slice<T>(arr: T[], offset: number, length?: number): T[] {
-    return arr.slice(offset, length ? offset + length : undefined);
+    if (length === 0) {
+        return [];
+    }
+
+    const endIndex = length !== undefined ? offset + length : undefined;
+
+    if (length !== undefined && length < 0) {
+        return arr.slice(offset);
+    }
+
+    return arr.slice(offset, endIndex);
 }
 
 export {
