@@ -605,16 +605,29 @@ function array_push<T>(arr: T[], ...elements: T[]): number {
  * @returns An array containing the randomly picked keys.
  */
 function array_rand<T>(arr: T[], num: number = 1): number[] {
-    const keys = Object.keys(arr);
-    const randomKeys: number[] = [];
+    if (num <= 0 || arr.length === 0) return [];
 
-    while (num > 0) {
-        const randomIndex = Math.floor(Math.random() * keys.length);
-        randomKeys.push(Number(keys[randomIndex]));
-        num--;
+    // If num is greater than or equal to the length of the input array, return all keys in shuffled order
+    if (num >= arr.length) {
+        const shuffledIndices = Array.from({ length: arr.length }, (_, index) => index);
+        for (let i = shuffledIndices.length - 1;i > 0;i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+        }
+        return shuffledIndices;
     }
 
-    return randomKeys;
+    // Generate unique random keys
+    const availableIndices: number[] = Array.from({ length: arr.length }, (_, index) => index);
+    const shuffledKeys: number[] = [];
+
+    for (let i = 0;i < num;i++) {
+        const randomIndex = Math.floor(Math.random() * availableIndices.length);
+        const selectedKey = availableIndices.splice(randomIndex, 1)[0];
+        shuffledKeys.push(selectedKey);
+    }
+
+    return shuffledKeys;
 }
 
 
@@ -626,7 +639,18 @@ function array_rand<T>(arr: T[], num: number = 1): number[] {
  * @returns The reduced value.
  */
 function array_reduce<T, U>(arr: T[], callback: (accumulator: U, currentValue: T, currentIndex: number, array: T[]) => U, initial?: U): U {
-    return arr.reduce(callback, initial as U);
+    if (arr.length === 0 && initial === undefined) {
+        throw new TypeError('Reduce of empty array with no initial value');
+    }
+
+    let accumulator: U = initial !== undefined ? initial : (arr[0] as unknown as U);
+    const startIndex = initial !== undefined ? 0 : 1;
+
+    for (let i = startIndex;i < arr.length;i++) {
+        accumulator = callback(accumulator, arr[i], i, arr);
+    }
+
+    return accumulator;
 }
 
 
