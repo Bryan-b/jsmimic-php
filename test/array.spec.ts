@@ -17,7 +17,25 @@ import {
     array_intersect_assoc,
     array_intersect_key,
     array_intersect_uassoc,
-    array_intersect_ukey
+    array_intersect_ukey,
+    array_is_list,
+    array_key_exists,
+    array_key_first,
+    array_key_last,
+    array_keys,
+    array_map,
+    array_merge,
+    array_merge_recursive,
+    array_pad,
+    array_product,
+    array_push,
+    array_rand,
+    array_reduce,
+    array_replace,
+    array_reverse,
+    array_search,
+    array_shift,
+    array_slice
 } from '../src/array';
 
 describe('array_change_key_case', () => {
@@ -112,14 +130,6 @@ describe('array_chunk', () => {
         const result = array_chunk(arr, size);
         expect(result).toEqual([]);
     });
-
-    // it('should preserve keys when the preserveKeys parameter is true', () => {
-    //     const arr = [1, 2, 3, 4, 5];
-    //     const size = 2;
-    //     const preserveKeys = true;
-    //     const result = array_chunk(arr, size, preserveKeys);
-    //     expect(result).toEqual([{ '0': 1, '1': 2 }, { '2': 3, '3': 4 }, { '4': 5 }]);
-    // });
 
     it('should split an array with non-numeric keys', () => {
         const arr = ['a', 'b', 'c', 'd', 'e'];
@@ -1076,5 +1086,768 @@ describe('array_intersect', () => {
         const arr2 = [2, 2, 3, 4];
         const result = array_intersect(arr1, arr2);
         expect(result).toEqual([2, 2, 3]);
+    });
+});
+
+describe('array_is_list', () => {
+    it('should return true when input array has numerical keys starting from 0', () => {
+      const arr = {0: 'a', 1: 'b', 2: 'c'};
+      expect(array_is_list(arr)).toBe(true);
+    });
+
+    it('should return true when input array is empty', () => {
+        const arr = {};
+        expect(array_is_list(arr)).toBe(true);
+    });
+
+    it('should return true when input array has a single element with key 0', () => {
+        const arr = { 0: 'a' };
+        expect(array_is_list(arr)).toBe(true);
+    });
+
+    it('should return false when input array has numerical keys not starting from 0', () => {
+        const arr = { 1: 'a', 2: 'b', 3: 'c' };
+        expect(array_is_list(arr)).toBe(false);
+    });
+
+    it('should return false when input array has missing keys', () => {
+        const arr = { 0: 'a', 2: 'b', 3: 'c' };
+        expect(array_is_list(arr)).toBe(false);
+    });
+})
+
+describe('array_key_exists', () => {
+    it('should return true when key exists in array', () => {
+        const arr = { name: 'John', age: 25 };
+        expect(array_key_exists('name', arr)).toBe(true);
+    });
+
+    it('should return false when key does not exist in array', () => {
+        const arr = { name: 'John', age: 25 };
+        expect(array_key_exists('address', arr)).toBe(false);
+    });
+
+    it('should return false when key does not exist in empty array', () => {
+        const arr = {};
+        expect(array_key_exists('name', arr)).toBe(false);
+    });
+
+    it('should return true when key exists in array with null values', () => {
+        const arr = { name: null, age: null };
+        expect(array_key_exists('name', arr)).toBe(true);
+    });
+
+    it('should return true when numeric key exists in array', () => {
+        const arr = { 0: 'apple', 1: 'banana', 2: 'orange' };
+        expect(array_key_exists(1, arr)).toBe(true);
+    });
+
+    it('should return true when key exists in array with undefined values', () => {
+        const arr = { name: undefined, age: undefined };
+        expect(array_key_exists('name', arr)).toBe(true);
+    });
+});
+
+describe('array_key_first', () => {
+    it('should return the first key of a non-empty object', () => {
+        const obj = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        expect(array_key_first(obj)).toBe('key1');
+    });
+
+    it('should return undefined for an empty object', () => {
+        const obj = {};
+        expect(array_key_first(obj)).toBeUndefined();
+    });
+
+    it('should work for an object with only one key', () => {
+        const obj = { key1: 'value1' };
+        expect(array_key_first(obj)).toBe('key1');
+    });
+
+    it('should return the first key of an object with numeric keys', () => {
+        const obj = { 1: 'value1', 2: 'value2', 3: 'value3' };
+        expect(array_key_first(obj)).toBe('1');
+    });
+
+    it('should return the first key of an object with non-numeric keys', () => {
+        const obj = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        expect(array_key_first(obj)).toBe('key1');
+    });
+
+    it('should return undefined for an object with no keys', () => {
+        const obj = Object.create(null);
+        expect(array_key_first(obj)).toBeUndefined();
+    });
+});
+
+describe('array_key_last', () => {
+    it('should return the only key when the array has length 1', () => {
+        const arr = { key1: 'value1' };
+        expect(array_key_last(arr)).toBe('key1');
+    });
+
+    it('should return the last key when the array has length 2', () => {
+        const arr = { key1: 'value1', key2: 'value2' };
+        expect(array_key_last(arr)).toBe('key2');
+    });
+
+    it('should return the last key when the array has length 10', () => {
+        const arr = { key1: 'value1', key2: 'value2', key3: 'value3', key4: 'value4', key5: 'value5', key6: 'value6', key7: 'value7', key8: 'value8', key9: 'value9', key10: 'value10' };
+        expect(array_key_last(arr)).toBe('key10');
+    });
+
+    it('should return undefined when the array is empty', () => {
+        const arr = {};
+        expect(array_key_last(arr)).toBeUndefined();
+    });
+
+    it('should return the last key when the array contains only undefined values', () => {
+        const arr = { key1: undefined, key2: undefined, key3: undefined };
+        expect(array_key_last(arr)).toBe('key3');
+    });
+
+    it('should return the last key when the array contains only null values', () => {
+        const arr = { key1: null, key2: null, key3: null };
+        expect(array_key_last(arr)).toBe('key3');
+    });
+});
+
+describe('array_keys', () => {
+    it('should return an empty array when input array is empty', () => {
+        const input = {};
+        const result = array_keys(input);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an array of keys when input array is not empty', () => {
+        const input = { a: 1, b: 2, c: 3 };
+        const result = array_keys(input);
+        expect(result).toEqual(['a', 'b', 'c']);
+    });
+
+    it('should return an array of string keys when input array has only string keys', () => {
+        const input = { 'a': 1, 'b': 2, 'c': 3 };
+        const result = array_keys(input);
+        expect(result).toEqual(['a', 'b', 'c']);
+    });
+});
+
+describe('array_map', () => {
+    it('should return an array of the same length as the input array when given a valid array and callback function', () => {
+        const inputArray = [1, 2, 3];
+        const callback = (value: number) => value * 2;
+        const expectedOutput = [2, 4, 6];
+
+        const result = array_map(inputArray, callback);
+
+        expect(result).toHaveLength(inputArray.length);
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should return an empty array when given an empty array', () => {
+        const inputArray: number[] = [];
+        const callback = (value: number) => value * 2;
+        const expectedOutput: number[] = [];
+
+        const result = array_map(inputArray, callback);
+
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should return an array with NaN values when given an array with undefined values', () => {
+        const inputArray = [1, undefined, 3] as any[];
+        const callback = (value: number) => value * 2;
+        const expectedOutput = [2, NaN, 6];
+
+        const result = array_map(inputArray, callback);
+
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should return an array with the same values as the input array when given a callback function that returns the same value for all elements', () => {
+        const inputArray = [1, 2, 3];
+        const callback = () => 10;
+        const expectedOutput = [10, 10, 10];
+
+        const result = array_map(inputArray, callback);
+
+        expect(result).toEqual(expectedOutput);
+    });
+
+    it('should return an array with the same values as the input array when given a callback function that returns undefined for all elements', () => {
+        const inputArray = [1, 2, 3];
+        const callback = () => undefined;
+        const expectedOutput = [undefined, undefined, undefined];
+
+        const result = array_map(inputArray, callback);
+
+        expect(result).toEqual(expectedOutput);
+    });
+});
+
+describe('array_merge', () => {
+    it('should merge two arrays with different types of elements', () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = ['a', 'b', 'c'];
+        const result = array_merge(arr1, arr2);
+        expect(result).toEqual([1, 2, 3, 'a', 'b', 'c']);
+    });
+
+    it('should merge multiple arrays with the same type of elements', () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+        const arr3 = [7, 8, 9];
+        const result = array_merge(arr1, arr2, arr3);
+        expect(result).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    });
+
+    it('should merge empty arrays', () => {
+      const arr1: number[] = [];
+      const arr2: number[] = [];
+      const result = array_merge(arr1, arr2);
+      expect(result).toEqual([]);
+    });
+
+    it('should merge empty arrays', () => {
+        const arr1: number[] = [];
+        const arr2: number[] = [];
+        const result = array_merge(arr1, arr2);
+        expect(result).toEqual([]);
+    });
+
+    it('should merge arrays with null or undefined values', () => {
+        const arr1 = [1, null, 3];
+        const arr2 = [undefined, 5, 6];
+        const result = array_merge(arr1, arr2);
+        expect(result).toEqual([1, null, 3, undefined, 5, 6]);
+    });
+});
+
+describe('array_merge_recursive', () => {
+    it('should merge two arrays with different keys', () => {
+        const arr1 = { key1: 'value1' };
+        const arr2 = { key2: 'value2' };
+
+        const result = array_merge_recursive<Record<string, any>>(arr1, arr2);
+
+        expect(result).toEqual({ key1: 'value1', key2: 'value2' });
+    });
+
+    it('should merge two arrays with overlapping keys', () => {
+        const arr1 = { key1: 'value1', key2: 'value2' };
+        const arr2 = { key2: 'new value', key3: 'value3' };
+
+        const result = array_merge_recursive<Record<string, any>>(arr1, arr2);
+
+        expect(result).toEqual({ key1: 'value1', key2: 'new value', key3: 'value3' });
+    });
+
+    it('should merge three or more arrays with different keys', () => {
+        const arr1 = { key1: 'value1' };
+        const arr2 = { key2: 'value2' };
+        const arr3 = { key3: 'value3' };
+
+        const result = array_merge_recursive<Record<string, any>>(arr1, arr2, arr3);
+
+        expect(result).toEqual({ key1: 'value1', key2: 'value2', key3: 'value3' });
+    });
+
+    it('should merge empty arrays', () => {
+        const arr1 = {};
+        const arr2 = {};
+
+        const result = array_merge_recursive(arr1, arr2);
+
+        expect(result).toEqual({});
+    });
+
+    it('should merge arrays with null values', () => {
+        const arr1 = { key1: null };
+        const arr2 = { key2: null };
+
+        const result = array_merge_recursive<Record<string, any>>(arr1, arr2);
+
+        expect(result).toEqual({ key1: null, key2: null });
+    });
+});
+
+describe('array_pad', () => {
+    it('should return the original array when size is less than or equal to the length of the array', () => {
+        const inputArray = [1, 2, 3];
+        const size = 3;
+        const value = 0;
+
+        const result = array_pad(inputArray, size, value);
+
+        expect(result).toEqual(inputArray);
+    });
+
+    it('should return a new array padded with the value when size is greater than the length of the array', () => {
+        const inputArray = [1, 2, 3];
+        const size = 5;
+        const value = 0;
+
+        const result = array_pad(inputArray, size, value);
+
+        expect(result).toEqual([1, 2, 3, 0, 0]);
+    });
+
+    it('should return an empty array when input array is empty and size is 0', () => {
+        const inputArray: number[] = [];
+        const size = 0;
+        const value = 0;
+
+        const result = array_pad(inputArray, size, value);
+
+        expect(result).toEqual([]);
+    });
+
+    it('should return a new array padded with the value when input array is empty and size is greater than 0', () => {
+        const inputArray: number[] = [];
+        const size = 3;
+        const value = 0;
+
+        const result = array_pad(inputArray, size, value);
+
+        expect(result).toEqual([0, 0, 0]);
+    });
+
+    it('should return a new array with the value when input array is null and size is greater than 0', () => {
+        const inputArray: number[] | null = null;
+        const size = 3;
+        const value = 0;
+
+        const result = array_pad(inputArray, size, value);
+
+        expect(result).toEqual([0, 0, 0]);
+    });
+
+    it('should throw an error when size is negative', () => {
+        const inputArray = [1, 2, 3];
+        const size = -1;
+        const value = 0;
+
+        expect(() => array_pad(inputArray, size, value)).toThrowError('Size cannot be negative');
+    });
+});
+
+describe('array_product', () => {
+    it('should return the product of an array of positive integers', () => {
+        const arr = [2, 3, 4];
+        const result = array_product(arr);
+        expect(result).toBe(24);
+    });
+
+    it('should return 1 when given an empty array', () => {
+        const arr: number[] = [];
+        const result = array_product(arr);
+        expect(result).toBe(1);
+    });
+
+    it('should return the value of the single element in an array of length 1', () => {
+        const arr = [5];
+        const result = array_product(arr);
+        expect(result).toBe(5);
+    });
+
+    it('should return 0 when given an array containing 0', () => {
+        const arr = [2, 0, 4];
+        const result = array_product(arr);
+        expect(result).toBe(0);
+    });
+
+    it('should return NaN when given an array containing NaN', () => {
+        const arr = [2, NaN, 4];
+        const result = array_product(arr);
+        expect(result).toBe(NaN);
+    });
+
+    it('should return Infinity when given an array containing Infinity', () => {
+        const arr = [2, Infinity, 4];
+        const result = array_product(arr);
+        expect(result).toBe(Infinity);
+    });
+
+    it('should return the correct product when given an array of negative integers', () => {
+        const arr = [-2, -3, -4];
+        const result = array_product(arr);
+        expect(result).toBe(-24);
+    });
+
+    it('should return the correct product when given an array of mixed positive and negative integers', () => {
+        const arr = [-2, 3, -4];
+        const result = array_product(arr);
+        expect(result).toBe(24);
+    });
+
+    it('should return the correct product when given an array of floating point numbers', () => {
+        const arr = [2.5, 3.5, 4.5];
+        const result = array_product(arr);
+        expect(result).toBeCloseTo(39.375);
+    });
+});
+
+describe('array_push', () => {
+    it('should add one element to an empty array', () => {
+        const arr: number[] = [];
+        const result = array_push(arr, 1);
+        expect(result).toBe(1);
+        expect(arr).toEqual([1]);
+    });
+
+    it('should add multiple elements to an empty array', () => {
+        const arr: number[] = [];
+        const result = array_push(arr, 1, 2, 3);
+        expect(result).toBe(3);
+        expect(arr).toEqual([1, 2, 3]);
+    });
+
+    it('should add one element to a non-empty array', () => {
+        const arr = [1, 2, 3];
+        const result = array_push(arr, 4);
+        expect(result).toBe(4);
+        expect(arr).toEqual([1, 2, 3, 4]);
+    });
+
+    it('should add no elements to an array', () => {
+        const arr = [1, 2, 3];
+        const result = array_push(arr);
+        expect(result).toBe(3);
+        expect(arr).toEqual([1, 2, 3]);
+    });
+
+    it('should add undefined to an array', () => {
+        const arr: (number | undefined)[] = [];
+        const result = array_push(arr, undefined);
+        expect(result).toBe(1);
+        expect(arr).toEqual([undefined]);
+    });
+
+    it('should add null to an array', () => {
+        const arr: (number | null)[] = [];
+        const result = array_push(arr, null);
+        expect(result).toBe(1);
+        expect(arr).toEqual([null]);
+    });
+
+    it('should add multiple elements to a non-empty array', () => {
+        const arr: number[] = [1, 2, 3];
+        const result = array_push(arr, 4, 5, 6);
+        expect(result).toBe(6);
+        expect(arr).toEqual([1, 2, 3, 4, 5, 6]);
+    });
+
+    it('should add elements of different types to an array', () => {
+        const arr: (number | string)[] = [1, 'two', 3];
+        const result = array_push(arr, 'four', 5);
+        expect(result).toBe(5);
+        expect(arr).toEqual([1, 'two', 3, 'four', 5]);
+    });
+});
+
+describe('array_rand', () => {
+    it('should return an empty array when the input array is empty', () => {
+        const arr: number[] = [];
+        const result = array_rand(arr);
+        expect(result.length).toBe(0);
+    });
+
+    it('should return an empty array when num is zero', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const num = 0;
+        const result = array_rand(arr, num);
+        expect(result.length).toBe(0);
+    });
+
+    it('should return an array with keys in ascending order', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const result = array_rand(arr);
+        const sortedResult = result.sort((a, b) => a - b);
+        expect(result).toEqual(sortedResult);
+    });
+
+    it('should return an array with keys in shuffled order', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const result = array_rand(arr);
+        const shuffledResult = result.slice().sort(() => Math.random() - 0.5);
+        expect(result).toEqual(shuffledResult);
+    });
+
+    it('should return an array with all indices when num is equal to the length of the input array', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const result = array_rand(arr, arr.length);
+        expect(result.length).toBe(arr.length);
+        expect(result.sort()).toEqual(Array.from({ length: arr.length }, (_, index) => index).sort());
+    });
+});
+
+describe('array_reduce', () => {
+    it('should sum up the numbers in the array when using a callback function', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const callback = (accumulator: number, currentValue: number) => accumulator + currentValue;
+        const result = array_reduce(arr, callback);
+        expect(result).toBe(15);
+    });
+
+    it('should concatenate the strings in the array when using a callback function', () => {
+        const arr = ['Hello', ' ', 'World', '!'];
+        const callback = (accumulator: string, currentValue: string) => accumulator + currentValue;
+        const result = array_reduce(arr, callback);
+        expect(result).toBe('Hello World!');
+    });
+
+    it('should return the initial value when reducing an empty array with an initial value', () => {
+        const arr: number[] = [];
+        const callback = (accumulator: number, currentValue: number) => accumulator + currentValue;
+        const initial = 10;
+        const result = array_reduce(arr, callback, initial);
+        expect(result).toBe(10);
+    });
+
+    it('should return the single element when reducing an array of one element without an initial value', () => {
+        const arr = [5];
+        const callback = (accumulator: number, currentValue: number) => accumulator + currentValue;
+        const result = array_reduce(arr, callback);
+        expect(result).toBe(5);
+    });
+
+    it('should return the sum of the element and the initial value when reducing an array of one element with an initial value', () => {
+        const arr = [5];
+        const callback = (accumulator: number, currentValue: number) => accumulator + currentValue;
+        const initial = 10;
+        const result = array_reduce(arr, callback, initial);
+        expect(result).toBe(15);
+    });
+});
+
+describe('array_replace', () => {
+    it('should replace values in an array with values from another array', () => {
+        const inputArray = { a: 1, b: 2, c: 3 };
+        const replacementArray = { b: 4, c: 5, d: 6 };
+        const expectedArray = { a: 1, b: 4, c: 5, d: 6 };
+
+        const result = array_replace(inputArray, replacementArray);
+
+        expect(result).toEqual(expectedArray);
+    });
+
+    it('should return a new array with replaced values', () => {
+        const inputArray = { a: 1, b: 2, c: 3 };
+        const replacementArray = { b: 4, c: 5, d: 6 };
+        const expectedArray = { a: 1, b: 4, c: 5, d: 6 };
+
+        const result = array_replace(inputArray, replacementArray);
+
+        expect(result).not.toBe(inputArray);
+        expect(result).toEqual(expectedArray);
+    });
+
+    it('should work with arrays of any length', () => {
+        const inputArray = { a: 1, b: 2, c: 3 };
+        const replacementArray = { b: 4, c: 5, d: 6, e: 7, f: 8 };
+        const expectedArray = { a: 1, b: 4, c: 5, d: 6, e: 7, f: 8 };
+
+        const result = array_replace(inputArray, replacementArray);
+
+        expect(result).toEqual(expectedArray);
+    });
+
+    it('should return a new array with only replacement values if input array is empty', () => {
+        const inputArray = {};
+        const replacementArray = { b: 4, c: 5, d: 6 };
+        const expectedArray = { b: 4, c: 5, d: 6 };
+
+        const result = array_replace(inputArray, replacementArray);
+
+        expect(result).toEqual(expectedArray);
+    });
+
+    it('should return a new array with only input values if replacement array is empty', () => {
+        const inputArray = { a: 1, b: 2, c: 3 };
+        const replacementArray = {};
+        const expectedArray = { a: 1, b: 2, c: 3 };
+
+        const result = array_replace(inputArray, replacementArray);
+
+        expect(result).toEqual(expectedArray);
+    });
+});
+
+describe('array_reverse', () => {
+    it('should reverse an array of numbers', () => {
+        const input = [1, 2, 3, 4, 5];
+        const expected = [5, 4, 3, 2, 1];
+        const result = array_reverse(input);
+        expect(result).toEqual(expected);
+    });
+
+    it('should reverse an array of strings', () => {
+        const input = ['apple', 'banana', 'cherry'];
+        const expected = ['cherry', 'banana', 'apple'];
+        const result = array_reverse(input);
+        expect(result).toEqual(expected);
+    });
+
+    it('should reverse an array of objects', () => {
+        const input = [{ name: 'John' }, { name: 'Jane' }, { name: 'Joe' }];
+        const expected = [{ name: 'Joe' }, { name: 'Jane' }, { name: 'John' }];
+        const result = array_reverse(input);
+        expect(result).toEqual(expected);
+    });
+
+    it('should reverse an empty array', () => {
+        const input: any[] = [];
+        const expected: any[] = [];
+        const result = array_reverse(input);
+        expect(result).toEqual(expected);
+    });
+
+    it('should reverse an array with one element', () => {
+        const input = [1];
+        const expected = [1];
+        const result = array_reverse(input);
+        expect(result).toEqual(expected);
+    });
+
+    it('should reverse an array with duplicate elements', () => {
+        const input = [1, 2, 2, 3, 4, 4, 5];
+        const expected = [5, 4, 4, 3, 2, 2, 1];
+        const result = array_reverse(input);
+        expect(result).toEqual(expected);
+    });
+});
+
+describe('array_search', () => {
+    it('should return the corresponding key when searching for an existing value in the array', () => {
+        const haystack = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const needle = 'value2';
+        const result = array_search(needle, haystack);
+        expect(result).toBe('key2');
+    });
+
+    it('should return the corresponding key when searching for the first value in the array', () => {
+        const haystack = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const needle = 'value1';
+        const result = array_search(needle, haystack);
+        expect(result).toBe('key1');
+    });
+
+    it('should return the corresponding key when searching for the last value in the array', () => {
+        const haystack = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const needle = 'value3';
+        const result = array_search(needle, haystack);
+        expect(result).toBe('key3');
+    });
+
+    it('should return null when searching for a non-existing value in the array', () => {
+        const haystack = { key1: 'value1', key2: 'value2', key3: 'value3' };
+        const needle = 'value4';
+        const result = array_search(needle, haystack);
+        expect(result).toBeNull();
+    });
+
+    it('should return null when searching for a value in an empty array', () => {
+        const haystack = {};
+        const needle = 'value1';
+        const result = array_search(needle, haystack);
+        expect(result).toBeNull();
+    });
+
+    it('should return the corresponding key when searching for a value in an array with null values', () => {
+        const haystack = { key1: null, key2: 'value2', key3: null };
+        const needle = null;
+        const result = array_search(needle, haystack);
+        expect(result).toBe('key1');
+    });
+});
+
+describe('array_shift', () => {
+    it('should return the first element when the array has one element', () => {
+        const arr = [1];
+        const result = array_shift(arr);
+        expect(result).toBe(1);
+        expect(arr.length).toBe(0);
+    });
+
+    it('should return the first element when the array has multiple elements', () => {
+        const arr = [1, 2, 3];
+        const result = array_shift(arr);
+        expect(result).toBe(1);
+        expect(arr.length).toBe(2);
+    });
+
+    it('should return undefined when the array is empty', () => {
+        const arr: number[] = [];
+        const result = array_shift(arr);
+        expect(result).toBeUndefined();
+        expect(arr.length).toBe(0);
+    });
+
+    it('should return undefined when the array has only one element and it is removed', () => {
+        const arr = [1];
+        const result = array_shift(arr);
+        expect(result).toBe(1);
+        expect(arr.length).toBe(0);
+        const secondResult = array_shift(arr);
+        expect(secondResult).toBeUndefined();
+        expect(arr.length).toBe(0);
+    });
+
+    it('should return the first element when the last element is removed from an array with multiple elements', () => {
+        const arr = [1, 2, 3];
+        const result = array_shift(arr);
+        expect(result).toBe(1);
+        expect(arr.length).toBe(2);
+        const secondResult = array_shift(arr);
+        expect(secondResult).toBe(2);
+        expect(arr.length).toBe(1);
+    });
+});
+
+describe('array_slice', () => {
+    it('should return a new array with elements from the specified offset to the end of the input array when length is not provided', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const offset = 2;
+        const result = array_slice(arr, offset);
+        expect(result).toEqual([3, 4, 5]);
+    });
+
+    it('should return a new array with elements from the specified offset to the specified length of the input array when length is provided', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const offset = 1;
+        const length = 3;
+        const result = array_slice(arr, offset, length);
+        expect(result).toEqual([2, 3, 4]);
+    });
+
+    it('should return an empty array when offset is greater than or equal to the length of the input array', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const offset = 5;
+        const result = array_slice(arr, offset);
+        expect(result).toEqual([]);
+    });
+
+    it('should return an empty array when length is 0', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const offset = 2;
+        const length = 0;
+        const result = array_slice(arr, offset, length);
+        expect(result).toEqual([]);
+    });
+
+    it('should return a new array with elements from the specified offset to the end of the input array when length is negative', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const offset = 2;
+        const length = -2;
+        const result = array_slice(arr, offset, length);
+        expect(result).toEqual([3, 4, 5]);
+    });
+
+    it('should return a new array with elements from the specified offset to the end of the input array when length is greater than the length of the input array minus the offset', () => {
+        const arr = [1, 2, 3, 4, 5];
+        const offset = 2;
+        const length = 10;
+        const result = array_slice(arr, offset, length);
+        expect(result).toEqual([3, 4, 5]);
     });
 });

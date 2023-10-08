@@ -450,6 +450,285 @@ function array_intersect<T>(arr1: T[], arr2: T[]): T[] {
 }
 
 
+/**
+ * Checks if all keys are numerical and start from 0.
+ * @param arr - The input array.
+ * @returns `true` if the array is considered a list, `false` otherwise.
+ */
+function array_is_list<T>(arr: Record<string, T>): boolean {
+    const keys = Object.keys(arr);
+    return keys.every((key, index) => key === index.toString());
+}
+
+/**
+ * Checks if a specific key exists in an array.
+ * @param key - The key to check.
+ * @param arr - The input array.
+ * @returns `true` if the key exists in the array, `false` otherwise.
+ */
+function array_key_exists<T>(key: string | number, arr: Record<string, T>): boolean {
+    return key in arr;
+}
+
+/**
+ * Gets the first key of an array.
+ * @param arr - The input array.
+ * @returns The first key, or `undefined` if the array is empty.
+ */
+function array_key_first<T>(arr: Record<string, T>): string | undefined {
+    const keys = Object.keys(arr);
+    return keys[0];
+}
+
+/**
+ * Gets the last key of an array.
+ * @param arr - The input array.
+ * @returns The last key, or `undefined` if the array is empty.
+ */
+function array_key_last<T>(arr: Record<string, T>): string | undefined {
+    const keys = Object.keys(arr);
+    return keys[keys.length - 1];
+}
+
+/**
+ * Returns all the keys of an array.
+ * @param arr - The input array.
+ * @returns An array containing all the keys of the input array.
+ */
+function array_keys<T>(arr: Record<string, T>): string[] {
+    return Object.keys(arr);
+}
+
+/**
+ * Applies a callback function to all elements of an array.
+ * @param arr - The input array.
+ * @param callback - A callback function to apply to each element.
+ * @returns An array containing the modified values.
+ */
+function array_map<T, U>(arr: T[], callback: (value: T, index: number, array: T[]) => U): U[] {
+    return arr.map(callback);
+}
+
+
+/**
+ * Merges two or more arrays.
+ * @param arrays - Arrays to merge.
+ * @returns A new array containing the merged elements.
+ */
+function array_merge<T extends any[]>(...arrays: T): Array<T[any]> {
+    const result: Array<T[any]> = [];
+
+    for (const arr of arrays) {
+        result.push(...arr);
+    }
+
+    return result;
+}
+
+
+/**
+ * Recursively merges two or more arrays.
+ * @param arrays - Arrays to merge.
+ * @returns A new object containing the merged values.
+ */
+function array_merge_recursive<T extends Record<string, any>>(...arrays: T[]): T {
+    const result: T = {} as T;
+
+    for (const arr of arrays) {
+        for (const key in arr) {
+            if (arr.hasOwnProperty(key)) {
+                if (typeof arr[key] === 'object' && arr[key] !== null) {
+                    if (typeof result[key] === 'undefined') {
+                        // Initialize the result[key] as an object of the same type as arr[key]
+                        result[key] = Array.isArray(arr[key]) ? [] as any : {} as any;
+                    }
+                    result[key] = array_merge_recursive(result[key], arr[key]);
+                } else {
+                    result[key] = arr[key];
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+/**
+ * Pad an array to a specified length with a value.
+ * @param arr - The input array.
+ * @param size - The target length.
+ * @param value - The value to pad with.
+ * @returns A new array padded to the specified length.
+ */
+function array_pad<T>(arr: T[] | null, size: number, value: T): T[] {
+    if (arr === null) return array_fill(0, size, value);
+    if (size < 0) throw new Error('Size cannot be negative');
+    if (size <= arr.length) return arr;
+
+    const padCount = size - arr.length;
+    const paddedArray = [...arr];
+
+    for (let i = 0;i < padCount;i++) {
+        paddedArray.push(value);
+    }
+
+    return paddedArray;
+}
+
+
+/**
+ * Calculate the product of values in an array.
+ * @param arr - The input array.
+ * @returns The product of all values in the array.
+ */
+function array_product(arr: number[]): number {
+    return arr.reduce((product, value) => product * value, 1);
+}
+
+
+/**
+ * Add one or more elements to the end of an array.
+ * @param arr - The input array.
+ * @param elements - Elements to add to the end of the array.
+ * @returns The new length of the array.
+ */
+function array_push<T>(arr: T[], ...elements: T[]): number {
+    arr.push(...elements);
+    return arr.length;
+}
+
+
+/**
+ * Pick one or more random keys from an array.
+ * @param arr - The input array.
+ * @param num - Number of random keys to pick.
+ * @returns An array containing the randomly picked keys.
+ */
+function array_rand<T>(arr: T[], num: number = 1): number[] {
+    if (num <= 0 || arr.length === 0) return [];
+
+    // If num is greater than or equal to the length of the input array, return all keys in shuffled order
+    if (num >= arr.length) {
+        const shuffledIndices = Array.from({ length: arr.length }, (_, index) => index);
+        for (let i = shuffledIndices.length - 1;i > 0;i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+        }
+        return shuffledIndices;
+    }
+
+    // Generate unique random keys
+    const availableIndices: number[] = Array.from({ length: arr.length }, (_, index) => index);
+    const shuffledKeys: number[] = [];
+
+    for (let i = 0;i < num;i++) {
+        const randomIndex = Math.floor(Math.random() * availableIndices.length);
+        const selectedKey = availableIndices.splice(randomIndex, 1)[0];
+        shuffledKeys.push(selectedKey);
+    }
+
+    return shuffledKeys;
+}
+
+
+/**
+ * Iteratively reduce an array to a single value using a callback function.
+ * @param arr - The input array.
+ * @param callback - A callback function to apply to each element.
+ * @param initial - (Optional) Initial value for the accumulator.
+ * @returns The reduced value.
+ */
+function array_reduce<T, U>(arr: T[], callback: (accumulator: U, currentValue: T, currentIndex: number, array: T[]) => U, initial?: U): U {
+    if (arr.length === 0 && initial === undefined) {
+        throw new TypeError('Reduce of empty array with no initial value');
+    }
+
+    let accumulator: U = initial !== undefined ? initial : (arr[0] as unknown as U);
+    const startIndex = initial !== undefined ? 0 : 1;
+
+    for (let i = startIndex;i < arr.length;i++) {
+        accumulator = callback(accumulator, arr[i], i, arr);
+    }
+
+    return accumulator;
+}
+
+
+/**
+ * Replace values in an array with values from another array.
+ * @param inputArray - The input array to modify.
+ * @param replacementArray - An array containing values to replace.
+ * @returns A new array with replaced values.
+ */
+function array_replace<T>(inputArray: Record<string, T>, replacementArray: Record<string, T>): Record<string, T> {
+    return { ...inputArray, ...replacementArray };
+}
+
+
+/**
+ * Reverses the order of elements in an array.
+ * @param arr - The input array.
+ * @param preserveKeys - (Optional) Whether to preserve keys.
+ * @returns A new array with elements in reverse order.
+ */
+function array_reverse<T>(arr: T[], preserveKeys: boolean = false): T[] {
+    const reversedArray = arr.reverse();
+    return preserveKeys ? reversedArray : Object.values(reversedArray);
+}
+
+
+/**
+ * Searches for a value in an array and returns the corresponding key if found.
+ * @param needle - The value to search for.
+ * @param haystack - The input array.
+ * @param strict - (Optional) Whether to use strict comparison.
+ * @returns The key corresponding to the value, or `null` if not found.
+ */
+function array_search<T>(needle: T, haystack: Record<string, T>, strict: boolean = false): string | null {
+    for (const key in haystack) {
+        if (haystack.hasOwnProperty(key)) {
+            const value = haystack[key];
+            if ((strict && value === needle) || (!strict && value == needle)) {
+                return key;
+            }
+        }
+    }
+
+    return null;
+}
+
+
+/**
+ * Remove and return the first element from an array.
+ * @param arr - The input array.
+ * @returns The removed element.
+ */
+function array_shift<T>(arr: T[]): T | undefined {
+    return arr.shift();
+}
+
+
+/**
+ * Extract a portion of an array.
+ * @param arr - The input array.
+ * @param offset - The starting index.
+ * @param length - (Optional) The length of the slice.
+ * @returns A new array containing the extracted elements.
+ */
+function array_slice<T>(arr: T[], offset: number, length?: number): T[] {
+    if (length === 0) {
+        return [];
+    }
+
+    const endIndex = length !== undefined ? offset + length : undefined;
+
+    if (length !== undefined && length < 0) {
+        return arr.slice(offset);
+    }
+
+    return arr.slice(offset, endIndex);
+}
+
 export {
     array_change_key_case,
     array_chunk,
@@ -469,5 +748,23 @@ export {
     array_intersect_key,
     array_intersect_uassoc,
     array_intersect_ukey,
-    array_intersect
-}
+    array_intersect,
+    array_is_list,
+    array_key_exists,
+    array_key_first,
+    array_key_last,
+    array_keys,
+    array_map,
+    array_merge,
+    array_merge_recursive,
+    array_pad,
+    array_product,
+    array_push,
+    array_rand,
+    array_reduce,
+    array_replace,
+    array_reverse,
+    array_search,
+    array_shift,
+    array_slice
+}        
