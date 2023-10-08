@@ -2,6 +2,7 @@
 
 `jsmimic-php` is a JS library that allows you to mimic PHP functions in JavaScript. This library is useful for people who are familiar with PHP and want to use JavaScript but don't have the time to learn the JavaScript equivalents of PHP functions.
 
+
 # Installation 🛠️
 
 To install jsmimic-php:
@@ -17,6 +18,56 @@ yarn add jsmimic-php
 ```
 
 # Usage 📖
+
+<!-- note -->
+> #
+> **Note:** Multi-dimensional arrays in php are represented as objects in JavaScript. 
+> 
+> Example: 
+>```php
+> array(1, 2, array(3, 4)) // in php
+> ```
+> is the same thing as 👇🏽
+> ```js
+> [1, 2, {0: 3, 1: 4}] // in JS.
+> ```
+>
+> and
+>
+> ```php
+> array('name' => 'John Doe', 'age' => 20) // in php
+> ```
+> is the same thing as 👇🏽
+> ```js
+> {name: 'John Doe', age: 20} // in JS.
+> ```
+> 
+> This is because JavaScript arrays can only have numeric keys, while PHP arrays can have both numeric and string keys. 
+> 
+> In more simple terms, JavaScript arrays can only have one dimension, while PHP arrays can have multiple dimensions, by multiple dimensions, I mean arrays within arrays or nested arrays.
+> 
+> but JavaScript arrays can only have arrays within objects, not arrays within arrays. 
+> 
+> Not clear enough? 🤔
+>
+> if you want to use multi-dimensional arrays in JavaScript, you can use objects instead and if you want to use objects in JavaScript, you can also use maps instead.
+>
+> Example:
+> ``` php
+> array('name' => 'John Doe', 'age' => 20) // in php 
+> ```
+>
+> is the same thing as 👇🏽
+>
+> ```js
+> new Map([['name', 'John Doe'], ['age', 20]]) // in JS.
+> // or
+> {name: 'John Doe', age: 20} // in JS.
+> ```
+> #
+
+pheew! 😅, that was a lot to take in, but I hope you understand now. 😊
+So let's officially get started. 🚀 
 
 To use jsmimic-php, you must first import it into your project:
 
@@ -87,6 +138,24 @@ const newArr = jsmp.array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
 | array_intersect_uassoc |  Computes the intersection of arrays with additional index check, compares indexes by a callback function. |
 | array_intersect_ukey |  Computes the intersection of arrays using a callback function on the keys for comparison. |
 | array_intersect |  Computes the intersection of arrays. |
+| array_is_list |  Checks if the given array is a list. |
+| array_key_exists |  Checks if the given key or index exists in the array. |
+| array_key_first |  Gets the first key of an array. |
+| array_key_last |  Gets the last key of an array. |
+| array_keys |  Return all the keys or a subset of the keys of an array. |
+| array_map |  Applies the callback to the elements of the given arrays. |
+| array_merge |  Merge one or more arrays. |
+| array_merge_recursive |  Merge two or more arrays recursively. |
+| array_pad |  Pad array to the specified length with a value. |
+| array_product | Calculate the product of values in an array. |
+| array_push |  Push one or more elements onto the end of array. |
+| array_rand |  Pick one or more random keys out of an array. |
+| array_reduce |  Iteratively reduce the array to a single value using a callback function. |
+| array_replace | Replaces elements from passed arrays into the first array. |
+| array_reverse |  Return an array with elements in reverse order. |
+| array_search |  Searches the array for a given value and returns the first corresponding key if successful. |
+| array_shift |  Shift an element off the beginning of array. |
+| array_slice |  Extract a slice of the array. |
 
 
 # Roadmap 🗺️
