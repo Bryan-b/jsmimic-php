@@ -1,4 +1,4 @@
-const jsmp = require('./dist');
+const jsmp = require('./src');
 
 if (typeof window !== 'undefined') {
     window.jsmimic = jsmp;
