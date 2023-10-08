@@ -131,14 +131,6 @@ describe('array_chunk', () => {
         expect(result).toEqual([]);
     });
 
-    // it('should preserve keys when the preserveKeys parameter is true', () => {
-    //     const arr = [1, 2, 3, 4, 5];
-    //     const size = 2;
-    //     const preserveKeys = true;
-    //     const result = array_chunk(arr, size, preserveKeys);
-    //     expect(result).toEqual([{ '0': 1, '1': 2 }, { '2': 3, '3': 4 }, { '4': 5 }]);
-    // });
-
     it('should split an array with non-numeric keys', () => {
         const arr = ['a', 'b', 'c', 'd', 'e'];
         const size = 2;
