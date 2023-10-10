@@ -80,6 +80,17 @@ import jsmp from 'jsmimic-php';
 
 ```
 
+or you can import the functions from the library individually:
+
+```js
+const { array_chunk, array_combine, array_change_key_case } = require('jsmimic-php');
+
+// or
+
+import { array_chunk, array_combine, array_change_key_case } from 'jsmimic-php';
+
+```
+
 Then, you can use the functions in jsmimic-php:
 just like in PHP, but this time in JavaScript. 😎
 
@@ -90,7 +101,9 @@ just like in PHP, but this time in JavaScript. 😎
 const keys = ['name', 'age'];
 const values = ['John Doe', 20];
 
-const arr = jsmp.array_combine(keys, values); // { name: 'John Doe', age: 20 }
+const arr = array_combine(keys, values); // { name: 'John Doe', age: 20 }
+
+
 
 
 // Example 2: Using the `array_change_key_case` function
@@ -100,22 +113,20 @@ const arr = {
     age: 20
 };
 
-const newArr = jsmp.array_change_key_case(arr, 'CASE_UPPER'); // { NAME: 'John Doe', AGE: 20 }
+const newArr = array_change_key_case(arr, 'CASE_UPPER'); // { NAME: 'John Doe', AGE: 20 }
 
 
 // Example 3: Using the `array_chunk` function
 
 const arr = [1, 2, 3, 4, 5];
 
-const newArr = jsmp.array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
+const newArr = array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
 
 ```
 
 # Documentation 📚
 
-###Available functions in jsmimic-php
-
-##### Array functions:
+#### Available Array functions:
 
 | Function | Description | 
 | --- | --- |
@@ -156,11 +167,50 @@ const newArr = jsmp.array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
 | array_search |  Searches the array for a given value and returns the first corresponding key if successful. |
 | array_shift |  Shift an element off the beginning of array. |
 | array_slice |  Extract a slice of the array. |
+| array_splice |  Remove a portion of the array and replace it with something else. |
+| array_sum |  Calculate the sum of values in an array. |
+| array_udiff_assoc |  Computes the difference of arrays with additional index check, compares data by a callback function. |
+| array_udiff_uassoc |  Computes the difference of arrays with additional index check, compares data and indexes by a callback function. |
+| array_udiff |  Computes the difference of arrays by using a callback function for data comparison. |
+| array_uintersect_assoc |  Computes the intersection of arrays with additional index check, compares data by a callback function. |
+| array_uintersect_uassoc |  Computes the intersection of arrays with additional index check, compares data and indexes by separate callback functions. |
+| array_uintersect |  Computes the intersection of arrays, compares data by a callback function. |
+| array_unique |  Removes duplicate values from an array. |
+| array_unshift |  Prepend one or more elements to the beginning of an array. |
+| array_values |  Return all the values of an array. |
+| array_walk_recursive |  Apply a user function recursively to every member of an array. |
+| array_walk |  Apply a user supplied function to every member of an array. |
+| array |  Create an array. |
+| arsort |  Sort an array in reverse order and maintain index association. |
+| asort |  Sort an array and maintain index association. |
+| compact |  Create array containing variables and their values. |
+| count |  Count all elements in an array, or something in an object. |
+| current |  Return the current element in an array. |
+| each |  Return the current key and value pair from an array and advance the array cursor. |
+| end |  Set the internal pointer of an array to its last element. |
+| in_array |  Checks if a value exists in an array. |
+| key_exists |  Alias of array_key_exists. |
+| key |  Fetch a key from an array. |
+| krsort |  Sort an array by key in reverse order. |
+| ksort |  Sort an array by key. |
+| list |  Assign variables as if they were an array. |
+| natcasesort |  Sort an array using a case insensitive "natural order" algorithm. |
+| natsort |  Sort an array using a "natural order" algorithm. |
+| next |  Advance the internal array pointer of an array. |
+| range |  Create an array containing a range of elements. |
+| reset |  Set the internal pointer of an array to its first element. |
+| rsort |  Sort an array in reverse order. |
+| shuffle |  Shuffle an array. |
+| sizeof |  Alias of count. |
+| sort |  Sort an array. |
+| uasort |  Sort an array with a user-defined comparison function and maintain index association. |
+| uksort |  Sort an array by keys using a user-defined comparison function. |
+| usort |  Sort an array by values using a user-defined comparison function. |
 
 
 # Roadmap 🗺️
 
-- Add more functions from the PHP array functions.
+- Add more functions from the PHP array functions
 - Add more functions from other PHP functions for other data types like strings, integers, etc.
 - Add more tests. 🧪
 - Add more documentation. 📚
