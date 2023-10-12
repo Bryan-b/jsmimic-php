@@ -749,6 +749,7 @@ function array_splice<T>(arr: T[], start: number, deleteCount: number, ...elemen
  * @returns The sum of all values in the array.
  */
 function array_sum(arr: number[]): number {
+    if (arr.length === 0) return 0;
     return arr.reduce((sum, value) => sum + value, 0);
 }
 
