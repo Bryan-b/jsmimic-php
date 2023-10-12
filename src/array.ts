@@ -772,6 +772,11 @@ function array_udiff_assoc<T>(arr1: Record<string, T>, arr2: Record<string, T>, 
         }
     }
 
+    const commonKeys = Object.keys(arr1).filter(key => key in arr2);
+    if (commonKeys.length === 0) {
+        return {};
+    }
+
     return result;
 }
 
