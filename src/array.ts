@@ -1162,7 +1162,41 @@ function list(...args: any[]): Record<string, any> {
  * @param arr - The input array.
  */
 function natcasesort(arr: string[]): void {
-    arr.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+    arr.sort((a, b) => {
+        const lowerA = a.toLowerCase();
+        const lowerB = b.toLowerCase();
+
+        // Define a regular expression to extract numbers and non-letters
+        const pattern = /(\d+|\D+)/g;
+
+        const segmentsA = lowerA.match(pattern);
+        const segmentsB = lowerB.match(pattern);
+
+        if (!segmentsA || !segmentsB) {
+            return lowerA.localeCompare(lowerB, undefined, { sensitivity: 'base' });
+        }
+
+        for (let i = 0;i < Math.min(segmentsA.length, segmentsB.length);i++) {
+            const segmentA = segmentsA[i];
+            const segmentB = segmentsB[i];
+
+            const isDigitA = /\d/.test(segmentA);
+            const isDigitB = /\d/.test(segmentB);
+
+            if (isDigitA && isDigitB) {
+                const numA = parseInt(segmentA, 10);
+                const numB = parseInt(segmentB, 10);
+
+                if (numA !== numB) {
+                    return numA - numB;
+                }
+            } else if (segmentA !== segmentB) {
+                return segmentA.localeCompare(segmentB, undefined, { sensitivity: 'base' });
+            }
+        }
+
+        return segmentsA.length - segmentsB.length;
+    });
 }
 
 
