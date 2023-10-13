@@ -1390,13 +1390,33 @@ function each<T>(arr: Record<string, T>): [string, T] | null {
  * @param step - (Optional) The step value.
  * @returns An array containing the range of elements.
  */
-function range(start: number, end: number, step: number = 1): number[] {
-    const result: number[] = [];
-    for (let i = start;i <= end;i += step) {
-        result.push(i);
+function* range(start: number, end: number, step: number = 1): Generator<number, void, void> {
+    if (step === 0) {
+        throw new Error('Step cannot be zero.');
     }
-    return result;
+
+    const increment = start < end ? Math.abs(step) : -Math.abs(step);
+
+    if (start === end) {
+        // Handle the case where start and end are the same
+        if (step === 0) {
+            // When step is zero, generate a single-element range
+            yield start;
+        } else {
+            // When step is not zero, generate an empty range
+            return;
+        }
+    } else if ((start < end && step > 0) || (start > end && step < 0)) {
+        // Valid range, yield values
+        for (let i = start;(start < end ? i <= end : i >= end);i += increment) {
+            yield i;
+        }
+    } else {
+        // Invalid range with step in the wrong direction, generate an empty range
+        return;
+    }
 }
+
 
 
 export {
