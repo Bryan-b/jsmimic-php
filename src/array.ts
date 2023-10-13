@@ -931,9 +931,10 @@ function array_walk<T>(arr: T[], callback: (value: T, key: number | string, arra
 
 /**
  * Create an array.
+ * @param args - Elements to insert into the array.
  * @returns An array containing the passed arguments.
  */
-function array(...args: any[]): any[] {
+function array(...args: any): any[] {
     return args;
 }
 
