@@ -848,8 +848,10 @@ function array_uintersect_uassoc<T>(arr1: Record<string, T>, arr2: Record<string
     const result: Record<string, T> = {};
 
     for (const key in arr1) {
-        if (arr1.hasOwnProperty(key) && (key in arr2) && dataCompareFunc(arr1[key], arr2[key]) === 0 && indexCompareFunc(key, key) === 0) {
-            result[key] = arr1[key];
+        if (arr1.hasOwnProperty(key) && key in arr2) {
+            if (dataCompareFunc(arr1[key], arr2[key]) === 0 && indexCompareFunc(key, key) === 0) {
+                result[key] = arr1[key];
+            }
         }
     }
 
@@ -1205,7 +1207,17 @@ function natcasesort(arr: string[]): void {
  * @param arr - The input array.
  */
 function natsort(arr: string[]): void {
-    arr.sort();
+    arr.sort((a, b) => {
+        const numA = parseFloat(a.replace(/[^-0-9.]+/g, '')) || 0;
+        const numB = parseFloat(b.replace(/[^-0-9.]+/g, '')) || 0;
+
+        if (numA !== numB) {
+            return numA - numB;
+        } else {
+            return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) ||
+                a.localeCompare(b, undefined, { sensitivity: 'base' });
+        }
+    });
 }
 
 
@@ -1215,7 +1227,12 @@ function natsort(arr: string[]): void {
  * @returns The current element's value.
  */
 function next<T>(arr: T[]): T | false {
-    return arr.length > 0 ? arr[1] : false;
+    if (arr.length <= 1) {
+        return false;
+    }
+    const nextElement = arr[1];
+    arr.shift();
+    return nextElement;
 }
 
 
@@ -1234,7 +1251,23 @@ function reset<T>(arr: T[]): T | false {
  * @param arr - The input array.
  */
 function rsort<T>(arr: T[]): void {
-    arr.sort((a, b) => {
+    arr.sort((a: any, b: any) => {
+        if (a === null && b === null) return 0;
+        if (a === null) return 1;
+        if (b === null) return -1;
+
+        if (a === b) return 0;
+
+        if (isNaN(a) && isNaN(b)) return 0;
+        if (isNaN(a)) return 1;
+        if (isNaN(b)) return -1;
+
+        if (typeof a !== typeof b) {
+            const strA = String(a);
+            const strB = String(b);
+            return strA.localeCompare(strB);
+        }
+
         if (a < b) return 1;
         if (a > b) return -1;
         return 0;
@@ -1359,13 +1392,33 @@ function each<T>(arr: Record<string, T>): [string, T] | null {
  * @param step - (Optional) The step value.
  * @returns An array containing the range of elements.
  */
-function range(start: number, end: number, step: number = 1): number[] {
-    const result: number[] = [];
-    for (let i = start;i <= end;i += step) {
-        result.push(i);
+function* range(start: number, end: number, step: number = 1): Generator<number, void, void> {
+    if (step === 0) {
+        throw new Error('Step cannot be zero.');
     }
-    return result;
+
+    const increment = start < end ? Math.abs(step) : -Math.abs(step);
+
+    if (start === end) {
+        // Handle the case where start and end are the same
+        if (step === 0) {
+            // When step is zero, generate a single-element range
+            yield start;
+        } else {
+            // When step is not zero, generate an empty range
+            return;
+        }
+    } else if ((start < end && step > 0) || (start > end && step < 0)) {
+        // Valid range, yield values
+        for (let i = start;(start < end ? i <= end : i >= end);i += increment) {
+            yield i;
+        }
+    } else {
+        // Invalid range with step in the wrong direction, generate an empty range
+        return;
+    }
 }
+
 
 
 export {
