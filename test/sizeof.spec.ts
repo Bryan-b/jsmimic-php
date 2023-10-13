@@ -2,7 +2,7 @@ import { sizeof } from "../src";
 
 describe('sizeof', () => {
     it('should return 0 for an empty array', () => {
-        const arr = [];
+        const arr = [] as number[];
         const result = sizeof(arr);
         expect(result).toBe(0);
     });
