@@ -1249,7 +1249,23 @@ function reset<T>(arr: T[]): T | false {
  * @param arr - The input array.
  */
 function rsort<T>(arr: T[]): void {
-    arr.sort((a, b) => {
+    arr.sort((a: any, b: any) => {
+        if (a === null && b === null) return 0;
+        if (a === null) return 1;
+        if (b === null) return -1;
+
+        if (a === b) return 0;
+
+        if (isNaN(a) && isNaN(b)) return 0;
+        if (isNaN(a)) return 1;
+        if (isNaN(b)) return -1;
+
+        if (typeof a !== typeof b) {
+            const strA = String(a);
+            const strB = String(b);
+            return strA.localeCompare(strB);
+        }
+
         if (a < b) return 1;
         if (a > b) return -1;
         return 0;
