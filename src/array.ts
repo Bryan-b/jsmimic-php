@@ -1225,7 +1225,12 @@ function natsort(arr: string[]): void {
  * @returns The current element's value.
  */
 function next<T>(arr: T[]): T | false {
-    return arr.length > 0 ? arr[1] : false;
+    if (arr.length <= 1) {
+        return false;
+    }
+    const nextElement = arr[1];
+    arr.shift();
+    return nextElement;
 }
 
 
