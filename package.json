@@ -1,6 +1,6 @@
 {
   "name": "jsmimic-php",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "description": "Access familiar PHP functions in JavaScript with jsmimic-php",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "url": "git+https://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@github.com/Bryan-b/jsmimic-php.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bryan B. Ebeh",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Bryan-b/jsmimic-php/issues"
