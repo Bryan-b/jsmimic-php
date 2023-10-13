@@ -848,8 +848,10 @@ function array_uintersect_uassoc<T>(arr1: Record<string, T>, arr2: Record<string
     const result: Record<string, T> = {};
 
     for (const key in arr1) {
-        if (arr1.hasOwnProperty(key) && (key in arr2) && dataCompareFunc(arr1[key], arr2[key]) === 0 && indexCompareFunc(key, key) === 0) {
-            result[key] = arr1[key];
+        if (arr1.hasOwnProperty(key) && key in arr2) {
+            if (dataCompareFunc(arr1[key], arr2[key]) === 0 && indexCompareFunc(key, key) === 0) {
+                result[key] = arr1[key];
+            }
         }
     }
 
