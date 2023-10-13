@@ -1205,7 +1205,17 @@ function natcasesort(arr: string[]): void {
  * @param arr - The input array.
  */
 function natsort(arr: string[]): void {
-    arr.sort();
+    arr.sort((a, b) => {
+        const numA = parseFloat(a.replace(/[^-0-9.]+/g, '')) || 0;
+        const numB = parseFloat(b.replace(/[^-0-9.]+/g, '')) || 0;
+
+        if (numA !== numB) {
+            return numA - numB;
+        } else {
+            return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }) ||
+                a.localeCompare(b, undefined, { sensitivity: 'base' });
+        }
+    });
 }
 
 
