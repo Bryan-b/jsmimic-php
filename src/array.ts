@@ -931,9 +931,10 @@ function array_walk<T>(arr: T[], callback: (value: T, key: number | string, arra
 
 /**
  * Create an array.
+ * @param args - Elements to insert into the array.
  * @returns An array containing the passed arguments.
  */
-function array(...args: any[]): any[] {
+function array(...args: any): any[] {
     return args;
 }
 
@@ -1055,7 +1056,13 @@ function end<T>(arr: T[]): T | false {
  * @returns `true` if the value exists in the array, `false` otherwise.
  */
 function in_array<T>(needle: T, haystack: T[], strict: boolean = false): boolean {
-    return haystack.some((value) => strict ? value === needle : value == needle);
+    return haystack.some((value) => {
+        if (strict) {
+            return JSON.stringify(value) === JSON.stringify(needle);
+        } else {
+            return value == needle;
+        }
+    });
 }
 
 
@@ -1155,7 +1162,41 @@ function list(...args: any[]): Record<string, any> {
  * @param arr - The input array.
  */
 function natcasesort(arr: string[]): void {
-    arr.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+    arr.sort((a, b) => {
+        const lowerA = a.toLowerCase();
+        const lowerB = b.toLowerCase();
+
+        // Define a regular expression to extract numbers and non-letters
+        const pattern = /(\d+|\D+)/g;
+
+        const segmentsA = lowerA.match(pattern);
+        const segmentsB = lowerB.match(pattern);
+
+        if (!segmentsA || !segmentsB) {
+            return lowerA.localeCompare(lowerB, undefined, { sensitivity: 'base' });
+        }
+
+        for (let i = 0;i < Math.min(segmentsA.length, segmentsB.length);i++) {
+            const segmentA = segmentsA[i];
+            const segmentB = segmentsB[i];
+
+            const isDigitA = /\d/.test(segmentA);
+            const isDigitB = /\d/.test(segmentB);
+
+            if (isDigitA && isDigitB) {
+                const numA = parseInt(segmentA, 10);
+                const numB = parseInt(segmentB, 10);
+
+                if (numA !== numB) {
+                    return numA - numB;
+                }
+            } else if (segmentA !== segmentB) {
+                return segmentA.localeCompare(segmentB, undefined, { sensitivity: 'base' });
+            }
+        }
+
+        return segmentsA.length - segmentsB.length;
+    });
 }
 
 
