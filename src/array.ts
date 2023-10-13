@@ -1056,7 +1056,13 @@ function end<T>(arr: T[]): T | false {
  * @returns `true` if the value exists in the array, `false` otherwise.
  */
 function in_array<T>(needle: T, haystack: T[], strict: boolean = false): boolean {
-    return haystack.some((value) => strict ? value === needle : value == needle);
+    return haystack.some((value) => {
+        if (strict) {
+            return JSON.stringify(value) === JSON.stringify(needle);
+        } else {
+            return value == needle;
+        }
+    });
 }
 
 
