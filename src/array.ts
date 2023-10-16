@@ -553,6 +553,31 @@ function array_merge_recursive<T extends Record<string, any>>(...arrays: T[]): T
     return result;
 }
 
+
+/**
+ * Sorts an array of objects based on multiple columns.
+ * @param array - The input array of objects.
+ * @param columns - An array of sorting column descriptors (e.g., [{ column: 'name', order: 'asc' }]).
+ * @returns The sorted array.
+ */
+function array_multisort(array: Record<string, any>[], columns: { column: string, order: 'asc' | 'desc' }[]): Record<string, any>[] {
+    return array.sort((a, b) => {
+        for (const column of columns) {
+            const { column: col, order } = column;
+            const aValue = a[col];
+            const bValue = b[col];
+
+            if (aValue < bValue) {
+                return order === 'asc' ? -1 : 1;
+            } else if (aValue > bValue) {
+                return order === 'asc' ? 1 : -1;
+            }
+        }
+        return 0;
+    });
+}
+
+
 /**
  * Pad an array to a specified length with a value.
  * @param arr - The input array.
@@ -1449,6 +1474,7 @@ export {
     array_map,
     array_merge,
     array_merge_recursive,
+    array_multisort,
     array_pad,
     array_product,
     array_push,
