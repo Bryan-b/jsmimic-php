@@ -277,6 +277,67 @@ const newArr = array_count_values(arr); // { '1': 2, '2': 2, '3': 2, '4': 2, '5'
 
 ```
 
+### 5. array_diff_assoc
+
+This function computes the difference of arrays in array1 but not in array2 with additional index check.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_diff_assoc(arr1, arr2); // [8, 10, 11, 12]
+
+```
+
+### 6. array_diff_key
+
+This function computes the difference of arrays that is in array1 but not in array2 using keys for comparison.
+
+```js
+
+const array1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+
+const array2 = { key2: 'value2', key4: 'value4', key5: 'value5' };
+
+const newArr = array_diff_key(array1, array2); // { key1: 'value1', key3: 'value3' }
+
+```
+
+### 7. array_diff_uassoc
+
+This function computes the difference of arrays with additional index check which is performed by a user supplied callback function.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_diff_uassoc(arr1, arr2, (a, b) => a - b); // [8, 10, 11, 12] sorted in ascending order
+
+```
+
+### 8. array_diff_ukey
+
+This function computes the difference of arrays that is in array1 but not in array2 using a callback function on the keys for comparison.
+
+```js
+
+const dataset1 = { 'a': 'apple', 'b': 'banana', 'c': 'cherry' };
+
+const dataset2 = { 'b': 'banana', 'd': 'date', 'e': 'elderberry' };
+
+function customKeyCompare(a, b) {
+  return a.toLowerCase() === b.toLowerCase() ? 0 : -1;
+}
+
+const differentKeys = array_diff_ukey(dataset1, dataset2, customKeyCompare); // { 'a': 'apple', 'c': 'cherry' }
+
+```
+
+
 
 # Contributing 🤝
 
