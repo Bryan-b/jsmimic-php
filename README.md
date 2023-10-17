@@ -540,6 +540,457 @@ It filters elements of an array using a callback function.
 The resulting array is an array of values from array1 that are not in array2.
 The `array_filter` function is useful when you want to filter elements of an array using a callback function.
 
+
+### 13. array_flip
+
+This function exchanges all keys with their associated values in an array.
+
+###### Parameters:
+- array (Array): The array of key/value pairs to be flipped.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const newArr = array_flip(arr); // { 'John Doe': 'name', '20': 'age' }
+
+```
+
+###### Explanation:
+
+The `array_flip` function takes one parameter: the array of key/value pairs to be flipped.
+It exchanges all keys with their associated values in an array.
+The resulting array is an object where each key is a value from the first array and each value is a key from the first array.
+The `array_flip` function is useful when you want to exchange all keys with their associated values in an array.
+
+
+### 14. array_intersect_assoc
+
+This function computes the intersection of arrays with additional index check.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_intersect_assoc(arr1, arr2); // [1, 2, 3, 4, 5]
+
+```
+
+###### Explanation:
+
+The `array_intersect_assoc` function takes two parameters: the array to compare from and the array to compare against.
+It computes the intersection of arrays with additional index check.
+The resulting array is an array of values from array1 that are also in array2.
+The `array_intersect_assoc` function is useful when you want to find the intersection between two arrays with additional index check.
+
+
+### 15. array_intersect_key
+
+This function computes the intersection of arrays using keys for comparison.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+
+```js
+
+const array1 = { key1: 'value1', key2: 'value2', key3: 'value3' };
+
+const array2 = { key2: 'value2', key4: 'value4', key5: 'value5' };
+
+const newArr = array_intersect_key(array1, array2); // { key2: 'value2' }
+
+```
+
+###### Explanation:
+
+The `array_intersect_key` function takes two parameters: the array to compare from and the array to compare against.
+It computes the intersection of arrays using keys for comparison.
+The resulting array is an object of values from array1 that are also in array2.
+The `array_intersect_key` function is useful when you want to find the intersection between two arrays using keys for comparison.
+
+
+### 16. array_intersect_uassoc
+
+This function computes the intersection of arrays with additional index check, compares indexes by a callback function.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_intersect_uassoc(arr1, arr2, (a, b) => a - b); // [1, 2, 3, 4, 5] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_intersect_uassoc` function takes three parameters: the array to compare from, the array to compare against and the callback function to use for comparison.
+It computes the intersection of arrays with additional index check, compares indexes by a callback function.
+The resulting array is an array of values from array1 that are also in array2.
+The `array_intersect_uassoc` function is useful when you want to find the intersection between two arrays with additional index check, compares indexes by a callback function.
+
+
+### 17. array_intersect_ukey
+
+This function computes the intersection of arrays using a callback function on the keys for comparison.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for comparison.
+
+```js
+
+const dataset1 = { 'a': 'apple', 'b': 'banana', 'c': 'cherry' };
+
+const dataset2 = { 'b': 'banana', 'd': 'date', 'e': 'elderberry' };
+
+function customKeyCompare(a, b) {
+  return a.toLowerCase() === b.toLowerCase() ? 0 : -1;
+}
+
+const differentKeys = array_intersect_ukey(dataset1, dataset2, customKeyCompare); // { 'b': 'banana' }
+
+```
+
+###### Explanation:
+
+The `array_intersect_ukey` function takes three parameters: the array to compare from, the array to compare against and the callback function to use for comparison.
+It computes the intersection of arrays using a callback function on the keys for comparison.
+The resulting array is an object of values from array1 that are also in array2.
+The `array_intersect_ukey` function is useful when you want to find the intersection between two arrays using a callback function on the keys for comparison.
+
+
+### 18. array_intersect
+
+This function computes the intersection of arrays.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5];
+
+const arr2 = [4, 5, 6, 7, 8];
+
+const newArr = array_intersect(arr1, arr2); // [4, 5]
+
+```
+
+###### Explanation:
+
+The `array_intersect` function takes two parameters: the array to compare from and the array to compare against.
+It computes the intersection of arrays.
+The resulting array is an array of values from array1 that are also in array2.
+The `array_intersect` function is useful when you want to find the intersection between two arrays.
+
+
+### 19. array_is_list
+
+This function checks if the given array is a list and returns true if the array is a list and false otherwise.
+
+###### Parameters:
+- array (Array): The array to check.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const isList = array_is_list(arr); // true
+
+```
+
+###### Explanation:
+
+The `array_is_list` function takes one parameter: the array to check.
+It checks if the given array is a list and returns true if the array is a list and false otherwise.
+The `array_is_list` function is useful when you want to check if the given array is a list.
+
+
+### 20. array_key_exists
+
+This function checks if the given key or index exists in the array.
+
+###### Parameters:
+- key (String): Value to check.
+- array (Array): An array with keys to check.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const keyExists = array_key_exists('name', arr); // true
+
+```
+
+###### Explanation:
+
+The `array_key_exists` function takes two parameters: the key to check and the array with keys to check.
+It checks if the given key or index exists in the array and returns true if the key exists and false otherwise.
+The `array_key_exists` function is useful when you want to check if the given key or index exists in the array.
+
+
+### 21. array_key_first
+
+This function gets the first key of an array.
+
+###### Parameters:
+- array (Array): The array to get the first key from.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const firstKey = array_key_first(arr); // 'name'
+
+```
+
+###### Explanation:
+
+The `array_key_first` function takes one parameter: the array to get the first key from.
+It gets the first key of an array and returns the key.
+The `array_key_first` function is useful when you want to get the first key of an array.
+
+
+### 22. array_key_last
+
+This function gets the last key of an array.
+
+###### Parameters:
+- array (Array): The array to get the last key from.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const lastKey = array_key_last(arr); // 'age'
+
+```
+
+###### Explanation:
+
+The `array_key_last` function takes one parameter: the array to get the last key from.
+It gets the last key of an array and returns the key.
+The `array_key_last` function is useful when you want to get the last key of an array.
+
+
+### 23. array_keys
+
+This function returns all the keys or a subset of the keys of an array.
+
+###### Parameters:
+- array (Array): The array to get the keys from.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const keys = array_keys(arr); // ['name', 'age']
+
+```
+
+###### Explanation:
+
+The `array_keys` function takes one parameter: the array to get the keys from.
+It returns all the keys or a subset of the keys of an array.
+The `array_keys` function is useful when you want to get all the keys or a subset of the keys of an array.
+
+
+### 24. array_map
+
+This function applies a callback function to each element of an array and returns the resulting array.
+
+###### Parameters:
+- callback (Function): The callback function to use for mapping.
+- array (Array): The array to iterate over.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const newArr = array_map((value) => value * 2, arr); // [2, 4, 6, 8, 10]
+
+```
+
+###### Explanation:
+
+The `array_map` function takes two parameters: the callback function to use for mapping and the array to iterate over.
+It applies a callback function to each element of an array and returns the resulting array.
+The `array_map` function is useful when you want to apply a callback function to each element of an array and return the resulting array.
+
+
+### 25. array_merge_recursive
+
+This function merges two or more arrays recursively.
+
+###### Parameters:
+- array1 (Array): The first array to merge.
+- array2 (Array): The second array to merge.
+- ...arrays (Array): (Optional) The arrays to merge.
+
+```js
+
+const arr1 = { name: 'John Doe', age: 20 };
+
+const arr2 = { name: 'Jane Doe', age: 21 };
+
+const mergedArr = array_merge_recursive(arr1, arr2); // { name: ['John Doe', 'Jane Doe'], age: [20, 21] }
+
+```
+
+###### Explanation:
+
+The `array_merge_recursive` function takes two or more parameters: the arrays to merge.
+It merges two or more arrays recursively.
+The resulting array is an object where each key is a key from the first array and each value is an array of values from the merged arrays.
+The `array_merge_recursive` function is useful when you want to merge two or more arrays recursively.
+
+
+### 26. array_merge
+
+This function merges two or more arrays.
+
+###### Parameters:
+- array1 (Array): The first array to merge.
+- array2 (Array): The second array to merge.
+- ...arrays (Array): (Optional) The arrays to merge.
+
+```js
+
+const arr1 = { name: 'John Doe', age: 20 };
+
+const arr2 = { name: 'Jane Doe', age: 21 };
+
+const mergedArr = array_merge(arr1, arr2); // { name: 'Jane Doe', age: 21 }
+
+```
+
+###### Explanation:
+
+The `array_merge` function takes two or more parameters: the arrays to merge.
+It merges two or more arrays.
+The resulting array is an object where each key is a key from the first array and each value is a value from the merged arrays.
+The `array_merge` function is useful when you want to merge two or more arrays.
+
+
+### 27. array_multisort // from array.ts
+
+This function sorts multiple or multi-dimensional arrays.
+
+###### Parameters:
+- array (Array): The array to sort.
+- column (Object): The  array of sorting columns descriptors. Each column descriptor has the following format: { column: 5, order: 'ASC' }.
+
+```js
+
+const arr = [
+    { name: 'John Doe', age: 20 },
+    { name: 'Jane Doe', age: 21 },
+    { name: 'James Doe', age: 22 },
+    { name: 'Jenny Doe', age: 23 },
+];
+
+const sortedArr = array_multisort(arr, [{ column: 'age', order: 'ASC' }]); 
+// [{ name: 'John Doe', age: 20 }, { name: 'Jane Doe', age: 21 }, { name: 'James Doe', age: 22 }, { name: 'Jenny Doe', age: 23 }]
+
+```
+
+###### Explanation:
+
+The `array_multisort` function takes two parameters: the array to sort and the array of sorting columns descriptors.
+It sorts multiple or multi-dimensional arrays.
+The resulting array is an array of values from the first array sorted by the sorting columns descriptors.
+The `array_multisort` function is useful when you want to sort multiple or multi-dimensional arrays.
+
+
+### 28. array_pad
+
+This function pads an array to a specified length with a specified value.
+
+###### Parameters:
+
+- array (Array): The array to pad.
+- size (Number): The new size of the array.
+- value (Any): Value to use for padding.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const newArr = array_pad(arr, 10, 'default'); 
+// [1, 2, 3, 4, 5, 'default', 'default', 'default', 'default', 'default']
+
+```
+
+###### Explanation:
+
+The `array_pad` function takes three parameters: the array to pad, the new size of the array and the value to use for padding.
+It pads an array to a specified length with a specified value.
+The resulting array is an array of values from the first array padded to the specified length with the specified value.
+The `array_pad` function is useful when you want to pad an array to a specified length with a specified value.
+
+### 29. array_pop
+
+This function pops the element off the end of array.
+
+###### Parameters:
+
+- array (Array): The array to pop.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const poppedElement = array_pop(arr); // 5
+
+```
+
+###### Explanation:
+
+The `array_pop` function takes one parameter: the array to pop.
+It pops the element off the end of array.
+The resulting array is an array of values from the first array with the last element removed.
+The `array_pop` function is useful when you want to pop the element off the end of array.
+
+
+### 30. array_product
+
+This function calculates the product of values in an array.
+
+###### Parameters:
+- array (Array): The array to calculate the product of values from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const product = array_product(arr); // 120
+
+```
+
+###### Explanation:
+
+The `array_product` function takes one parameter: the array to calculate the product of values from.
+It calculates the product of values in an array.
+The resulting array is an array of values from the first array with the last element removed.
+The `array_product` function is useful when you want to calculate the product of values in an array.
+
+
 # Contributing 🤝
 
 Contributions, issues and feature requests are welcome! 😃
