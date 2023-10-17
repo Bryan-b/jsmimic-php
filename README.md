@@ -225,35 +225,78 @@ const newArr = array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
 
 ### 1. array_change_key_case
 
-This function changes all keys in an array to lowercase or uppercase.
+###### Description:
+The array_change_key_case function is used to change the case of all keys in an array to either uppercase or lowercase.
 
-<!-- examples of the function -->
+###### Parameters:
+- array (Object): The input array whose keys you want to transform.
+- case (String): The case transformation option. Use 'CASE_UPPER' to change keys to uppercase or 'CASE_LOWER' to change keys to lowercase.
+
+###### Usage Example:
+
 ```js
 
-const arr = {
+const originalArray = {
     name: 'John Doe',
     age: 20
 };
 
-const newArr = array_change_key_case(arr, 'CASE_UPPER'); // { NAME: 'John Doe', AGE: 20 }
+// Change keys to uppercase
+const newArrayUpperCase = array_change_key_case(originalArray, 'CASE_UPPER'); // { NAME: 'John Doe', AGE: 20 }
+
+// Change keys to lowercase
+const newArrayLowerCase = array_change_key_case(originalArray, 'CASE_LOWER'); // { name: 'John Doe', age: 20 }
 
 ```
+
+###### Explanation:
+
+The array_change_key_case function takes two parameters: the input array and the desired case transformation ('CASE_UPPER' for uppercase, 'CASE_LOWER' for lowercase).
+It transforms the keys of the array to the specified case while preserving the original values.
+
 
 ### 2. array_chunk
 
-This function splits an array into chunks.
+###### Description:
+The array_chunk function is used to split an array into smaller chunks, each containing a specified number of elements.
+
+###### Parameters:
+- array (Array): The input array to be chunked.
+- size (Number): The size of each chunk.
+- preserveKeys (Boolean): (Optional) If set to true, the function will preserve the original keys. Default is false.
+
+
+Usage Example:
 
 ```js
 
-const arr = [1, 2, 3, 4, 5];
+const originalArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const newArr = array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
+const newArr = array_chunk(originalArray, 3); // [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
+
+
+// works with strings too
+const textArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
+const newTextArr = array_chunk(textArray, 4); // [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j']]
 
 ```
+
+###### Explanation:
+
+The array_chunk function takes two parameters: the input array and the size of each chunk.
+It divides the original array into smaller arrays, each containing the specified number of elements (except the last chunk, which may have fewer elements if there are not enough remaining).
+The resulting array is a multidimensional array where each element is a chunk of the original array.
+The array_chunk function is useful when you want to split an array into smaller chunks.
 
 ### 3. array_combine
 
 This function creates an array by using one array for keys and another for its values.
+
+###### Parameters:
+- keys (Array): Array of keys to be used. Illegal values for key will be converted to string.
+- values (Array): Array of values to be used.
+- preserveKeys (Boolean): (Optional) If set to true, the function will preserve the original keys. Default is false.
 
 ```js
 
@@ -265,9 +308,19 @@ const arr = array_combine(keys, values); // { name: 'John Doe', age: 20 }
 
 ```
 
+###### Explanation:
+
+The array_combine function takes two parameters: the array of keys and the array of values.
+It creates an array by using the first array for keys and the second array for values.
+The resulting array is an object where each key is a key from the first array and each value is a value from the second array.
+The array_combine function is useful when you want to create an associative array from two arrays.
+
 ### 4. array_count_values
 
 This function counts all the values of an array.
+
+###### Parameters:
+- array (Array): The array of values to count.
 
 ```js
 
@@ -277,9 +330,19 @@ const newArr = array_count_values(arr); // { '1': 2, '2': 2, '3': 2, '4': 2, '5'
 
 ```
 
+###### Explanation: 
+
+The array_count_values function takes one parameter: the array of values to count.
+It counts all the values of the array and returns an object where each key is a value from the array and each value is the number of times that value appears in the array.
+The array_count_values function is useful when you want to count the number of occurrences of each value in an array.
+
 ### 5. array_diff_assoc
 
 This function computes the difference of arrays in array1 but not in array2 with additional index check.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
 
 ```js
 
@@ -291,9 +354,20 @@ const newArr = array_diff_assoc(arr1, arr2); // [8, 10, 11, 12]
 
 ```
 
+###### Explanation:
+
+The array_diff_assoc function takes two parameters: the array to compare from and the array to compare against.
+It computes the difference of arrays in array1 but not in array2 with additional index check.
+The resulting array is an array of values from array1 that are not in array2. 
+The array_diff_assoc function is useful when you want to find the difference between two arrays with additional index check.
+
 ### 6. array_diff_key
 
 This function computes the difference of arrays that is in array1 but not in array2 using keys for comparison.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
 
 ```js
 
@@ -305,9 +379,23 @@ const newArr = array_diff_key(array1, array2); // { key1: 'value1', key3: 'value
 
 ```
 
+###### Explanation:
+
+The array_diff_key function takes two parameters: the array to compare from and the array to compare against.
+It computes the difference of arrays that is in array1 but not in array2 using keys for comparison.
+The resulting array is an object of values from array1 that are not in array2.
+The array_diff_key function is useful when you want to find the difference between two arrays using keys for comparison.
+
+
+
 ### 7. array_diff_uassoc
 
 This function computes the difference of arrays with additional index check which is performed by a user supplied callback function.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for comparison.
 
 ```js
 
@@ -319,9 +407,21 @@ const newArr = array_diff_uassoc(arr1, arr2, (a, b) => a - b); // [8, 10, 11, 12
 
 ```
 
+###### Explanation:
+
+The array_diff_uassoc function takes three parameters: the array to compare from, the array to compare against and the callback function to use for comparison.
+It computes the difference of arrays with additional index check which is performed by a user supplied callback function.
+The resulting array is an array of values from array1 that are not in array2.
+The array_diff_uassoc function is useful when you want to find the difference between two arrays with additional index check which is performed by a user supplied callback function.
+
 ### 8. array_diff_ukey
 
 This function computes the difference of arrays that is in array1 but not in array2 using a callback function on the keys for comparison.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for comparison.
 
 ```js
 
@@ -337,7 +437,82 @@ const differentKeys = array_diff_ukey(dataset1, dataset2, customKeyCompare); // 
 
 ```
 
+###### Explanation:
 
+The array_diff_ukey function takes three parameters: the array to compare from, the array to compare against and the callback function to use for comparison.
+It computes the difference of arrays that is in array1 but not in array2 using a callback function on the keys for comparison.
+The resulting array is an object of values from array1 that are not in array2.
+The array_diff_ukey function is useful when you want to find the difference between two arrays using a callback function on the keys for comparison.
+
+### 9. array_diff
+
+This function computes the difference of arrays.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5];
+
+const arr2 = [4, 5, 6, 7, 8];
+
+const newArr = array_diff(arr1, arr2); // [1, 2, 3]
+
+```
+
+###### Explanation:
+
+The array_diff function takes two parameters: the array to compare from and the array to compare against.
+It computes the difference of arrays.
+The resulting array is an array of values from array1 that are not in array2.
+The array_diff function is useful when you want to find the difference between two arrays.
+
+### 10. array_fill_keys
+
+This function fills an array with values, specifying keys.
+
+###### Parameters:
+- keys (Array): Array of values that will be used as keys.
+- value (Any): Value to use for filling.
+
+```js
+
+const arr = array_fill_keys(['foo', 5, 10, 'bar'], 'banana'); // { foo: 'banana', '5': 'banana', '10': 'banana', bar: 'banana' }
+
+```
+
+###### Explanation:
+
+The array_fill_keys function takes two parameters: the array of keys and the value to use for filling.
+It fills an array with values, specifying keys.
+The resulting array is an object where each key is a key from the first array and each value is the value to use for filling.
+The array_fill_keys function is useful when you want to fill an array with values, specifying keys.
+
+### 11. array_fill
+
+This function fills an array with values.
+
+###### Parameters:
+- startIndex (Number): The first index of the returned array.
+- num (Number): Number of elements to insert.
+- value (Any): Value to use for filling.
+
+```js
+
+const arr = array_fill(5, 6, 'banana'); // [ 'banana', 'banana', 'banana', 'banana', 'banana', 'banana' ]
+
+const filledArray = array_fill(0, 5, 'default'); // [ 'default', 'default', 'default', 'default', 'default' ]
+
+```
+
+###### Explanation:
+
+The array_fill function takes three parameters: the first index of the returned array, the number of elements to insert and the value to use for filling.
+It fills an array with values.
+The resulting array is an array of values from array1 that are not in array2.
+The array_fill function is useful when you want to fill an array with values.
 
 # Contributing 🤝
 
@@ -347,20 +522,23 @@ Feel free to check [issues page](https://github.com/Bryan-b/jsmimic-php/issues "
 
 <!-- rules on how to contribute to the project -->
 
-<!-- # How to contribute 🤝
+### How to contribute 🤝
 
 To contribute to this project:
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
 3. Make your changes and commit them: `git commit -m '<commit_message>'`
-    Use `FIX:` for bug fixes or `FEATURE:` for new features (new functions implementation etc.) at the start of your commit message.
+4. For commit message, use: 
+    - `FIX: <your message>` for bug fixes or 
+    - `FEATURE: <your message>` for new features (new functions implementation etc.) at the start of your commit message.
+    
     For example, 
     `FIX: array_chunk function not working as expected`
     or
     `FEATURE: Added array_diff function`.
-4. Push to the original branch you created: `git push origin <project_name>/<location>`
-5. Create the pull request. -->
+5. Push to the original branch you created: `git push origin <project_name>/<branch_name>`
+6. Create the pull request. 
 
 
 # Acknowledgments 🙏
