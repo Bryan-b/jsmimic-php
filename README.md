@@ -129,85 +129,85 @@ const newArr = array_chunk(arr, 2); // [[1, 2], [3, 4], [5]]
 
 #### Available Array functions:
 
-| Function | Description | Example |
-| --- | --- | --- |
-| array_change_key_case |  Changes all keys in an array to lowercase or uppercase. | [Example](#1-array_change_key_case) |
-| array_chunk |  Split an array into chunks. | [Example](#2-array_chunk) |
-| array_column |  Return the values from a single column in the input array. | [Example](#3-array_column) |
-| array_combine |  Creates an array by using one array for keys and another for its values. | [Example](#4-array_combine) |
-| array_count_values |  Counts all the values of an array. | [Example](#5-array_count_values) |
-| array_diff_assoc |  Computes the difference of arrays with additional index check. | [Example](#6-array_diff_assoc) |
-| array_diff_key |  Computes the difference of arrays using keys for comparison. | [Example](#7-array_diff_key) |
-| array_diff_uassoc |  Computes the difference of arrays with additional index check which is performed by a user supplied callback function. | [Example](#8-array_diff_uassoc) |
-| array_diff_ukey |  Computes the difference of arrays using a callback function on the keys for comparison. | [Example](#9-array_diff_ukey) |
-| array_diff |  Computes the difference of arrays. | [Example](#10-array_diff) |
-| array_fill_keys |  Fill an array with values, specifying keys. | [Example](#11-array_fill_keys) |
-| array_fill |  Fill an array with values. | [Example](#12-array_fill) |
-| array_filter |  Filters elements of an array using a callback function. | [Example](#13-array_filter) |
-| array_flip |  Exchanges all keys with their associated values in an array. | [Example](#14-array_flip) |
-| array_intersect_assoc |  Computes the intersection of arrays with additional index check. | [Example](#15-array_intersect_assoc) |
-| array_intersect_key |  Computes the intersection of arrays using keys for comparison. | [Example](#16-array_intersect_key) |
-| array_intersect_uassoc |  Computes the intersection of arrays with additional index check, compares indexes by a callback function. | [Example](#17-array_intersect_uassoc) |
-| array_intersect_ukey |  Computes the intersection of arrays using a callback function on the keys for comparison. | [Example](#18-array_intersect_ukey) |
-| array_intersect |  Computes the intersection of arrays. | [Example](#19-array_intersect) |
-| array_is_list |  Checks if the given array is a list. | [Example](#20-array_is_list) |
-| array_key_exists |  Checks if the given key or index exists in the array. | [Example](#21-array_key_exists) |
-| array_key_first |  Gets the first key of an array. | [Example](#22-array_key_first) |
-| array_key_last |  Gets the last key of an array. | [Example](#23-array_key_last) |
-| array_keys |  Return all the keys or a subset of the keys of an array. | [Example](#24-array_keys) |
-| array_map |  Applies the callback to the elements of the given arrays. | [Example](#25-array_map) |
-| array_merge |  Merge one or more arrays. | [Example](#26-array_merge) |
-| array_merge_recursive |  Merge two or more arrays recursively. | [Example](#27-array_merge_recursive) |
-| array_multisort |  Sort multiple or multi-dimensional arrays. | [Example](#28-array_multisort) |
-| array_pad |  Pad array to the specified length with a value. | [Example](#29-array_pad) |
-| array_product | Calculate the product of values in an array. | [Example](#30-array_product) |
-| array_push |  Push one or more elements onto the end of array. | [Example](#31-array_push) |
-| array_rand |  Pick one or more random keys out of an array. | [Example](#32-array_rand) |
-| array_reduce |  Iteratively reduce the array to a single value using a callback function. | [Example](#33-array_reduce) |
-| array_replace | Replaces elements from passed arrays into the first array. | [Example](#34-array_replace) |
-| array_reverse |  Return an array with elements in reverse order. | [Example](#35-array_reverse) |
-| array_search |  Searches the array for a given value and returns the first corresponding key if successful. | [Example](#36-array_search) |
-| array_shift |  Shift an element off the beginning of array. | [Example](#37-array_shift) |
-| array_slice |  Extract a slice of the array. | [Example](#38-array_slice) |
-| array_splice |  Remove a portion of the array and replace it with something else. | [Example](#39-array_splice) |
-| array_sum |  Calculate the sum of values in an array. | [Example](#40-array_sum) |
-| array_udiff_assoc |  Computes the difference of arrays with additional index check, compares data by a callback function. | [Example](#41-array_udiff_assoc) |
-| array_udiff_uassoc |  Computes the difference of arrays with additional index check, compares data and indexes by a callback function. | [Example](#42-array_udiff_uassoc) |
-| array_udiff |  Computes the difference of arrays by using a callback function for data comparison. | [Example](#43-array_udiff) |
-| array_uintersect_assoc |  Computes the intersection of arrays with additional index check, compares data by a callback function. | [Example](#44-array_uintersect_assoc) |
-| array_uintersect_uassoc |  Computes the intersection of arrays with additional index check, compares data and indexes by separate callback functions. | [Example](#45-array_uintersect_uassoc) |
-| array_uintersect |  Computes the intersection of arrays, compares data by a callback function. | [Example](#46-array_uintersect) |
-| array_unique |  Removes duplicate values from an array. | [Example](#47-array_unique) |
-| array_unshift |  Prepend one or more elements to the beginning of an array. | [Example](#48-array_unshift) |
-| array_values |  Return all the values of an array. | [Example](#49-array_values) |
-| array_walk_recursive |  Apply a user function recursively to every member of an array. | [Example](#50-array_walk_recursive) |
-| array_walk |  Apply a user supplied function to every member of an array. | [Example](#51-array_walk) |
-| array |  Create an array. | [Example](#52-array) |
-| arsort |  Sort an array in reverse order and maintain index association. | [Example](#53-arsort) |
-| asort |  Sort an array and maintain index association. | [Example](#54-asort) |
-| compact |  Create array containing variables and their values. | [Example](#55-compact) |
-| count |  Count all elements in an array, or something in an object. | [Example](#56-count) |
-| current |  Return the current element in an array. | [Example](#57-current) |
-| each |  Return the current key and value pair from an array and advance the array cursor. | [Example](#58-each) |
-| end |  Set the internal pointer of an array to its last element. | [Example](#59-end) |
-| in_array |  Checks if a value exists in an array. | [Example](#60-in_array) |
-| key_exists |  Alias of array_key_exists. | [Example](#61-key_exists) |
-| key |  Fetch a key from an array. | [Example](#62-key) |
-| krsort |  Sort an array by key in reverse order. | [Example](#63-krsort) |
-| ksort |  Sort an array by key. | [Example](#64-ksort) |
-| list |  Assign variables as if they were an array. | [Example](#65-list) |
-| natcasesort |  Sort an array using a case insensitive "natural order" algorithm. | [Example](#66-natcasesort) |
-| natsort |  Sort an array using a "natural order" algorithm. | [Example](#67-natsort) |
-| next |  Advance the internal array pointer of an array. | [Example](#68-next) |
-| range |  Create an array containing a range of elements. | [Example](#69-range) |
-| reset |  Set the internal pointer of an array to its first element. | [Example](#70-reset) |
-| rsort |  Sort an array in reverse order. | [Example](#71-rsort) |
-| shuffle |  Shuffle an array. | [Example](#72-shuffle) |
-| sizeof |  Alias of count. | [Example](#73-sizeof) |
-| sort |  Sort an array. | [Example](#74-sort) |
-| uasort |  Sort an array with a user-defined comparison function and maintain index association. | [Example](#75-uasort) |
-| uksort |  Sort an array by keys using a user-defined comparison function. | [Example](#76-uksort) |
-| usort |  Sort an array by values using a user-defined comparison function. | [Example](#77-usort) |
+|Index | Function | Description | Example |
+| --- | --- | --- | --- |
+|1| array_change_key_case |  Changes all keys in an array to lowercase or uppercase. | [Example](#1-array_change_key_case) |
+|2| array_chunk |  Split an array into chunks. | [Example](#2-array_chunk) |
+|3| array_column |  Return the values from a single column in the input array. | [Example](#3-array_column) |
+|4| array_combine |  Creates an array by using one array for keys and another for its values. | [Example](#4-array_combine) |
+|5| array_count_values |  Counts all the values of an array. | [Example](#5-array_count_values) |
+|6| array_diff_assoc |  Computes the difference of arrays with additional index check. | [Example](#6-array_diff_assoc) |
+|7| array_diff_key |  Computes the difference of arrays using keys for comparison. | [Example](#7-array_diff_key) |
+|8| array_diff_uassoc |  Computes the difference of arrays with additional index check which is performed by a user supplied callback function. | [Example](#8-array_diff_uassoc) |
+|9| array_diff_ukey |  Computes the difference of arrays using a callback function on the keys for comparison. | [Example](#9-array_diff_ukey) |
+|10| array_diff |  Computes the difference of arrays. | [Example](#10-array_diff) |
+|11| array_fill_keys |  Fill an array with values, specifying keys. | [Example](#11-array_fill_keys) |
+|12| array_fill |  Fill an array with values. | [Example](#12-array_fill) |
+|13| array_filter |  Filters elements of an array using a callback function. | [Example](#13-array_filter) |
+|14| array_flip |  Exchanges all keys with their associated values in an array. | [Example](#14-array_flip) |
+|15| array_intersect_assoc |  Computes the intersection of arrays with additional index check. | [Example](#15-array_intersect_assoc) |
+|16| array_intersect_key |  Computes the intersection of arrays using keys for comparison. | [Example](#16-array_intersect_key) |
+|17| array_intersect_uassoc |  Computes the intersection of arrays with additional index check, compares indexes by a callback function. | [Example](#17-array_intersect_uassoc) |
+|18| array_intersect_ukey |  Computes the intersection of arrays using a callback function on the keys for comparison. | [Example](#18-array_intersect_ukey) |
+|19| array_intersect |  Computes the intersection of arrays. | [Example](#19-array_intersect) |
+|20| array_is_list |  Checks if the given array is a list. | [Example](#20-array_is_list) |
+|21| array_key_exists |  Checks if the given key or index exists in the array. | [Example](#21-array_key_exists) |
+|22| array_key_first |  Gets the first key of an array. | [Example](#22-array_key_first) |
+|23| array_key_last |  Gets the last key of an array. | [Example](#23-array_key_last) |
+|24| array_keys |  Return all the keys or a subset of the keys of an array. | [Example](#24-array_keys) |
+|25| array_map |  Applies the callback to the elements of the given arrays. | [Example](#25-array_map) |
+|26| array_merge_recursive |  Merge two or more arrays recursively. | [Example](#26-array_merge_recursive) |
+|27| array_merge |  Merge one or more arrays. | [Example](#27-array_merge) |
+|28| array_multisort |  Sort multiple or multi-dimensional arrays. | [Example](#28-array_multisort) |
+|29| array_pad |  Pad array to the specified length with a value. | [Example](#29-array_pad) |
+|30| array_product | Calculate the product of values in an array. | [Example](#30-array_product) |
+|31| array_push |  Push one or more elements onto the end of array. | [Example](#31-array_push) |
+|32| array_rand |  Pick one or more random keys out of an array. | [Example](#32-array_rand) |
+|33| array_reduce |  Iteratively reduce the array to a single value using a callback function. | [Example](#33-array_reduce) |
+|34| array_replace | Replaces elements from passed arrays into the first array. | [Example](#34-array_replace) |
+|35| array_reverse |  Return an array with elements in reverse order. | [Example](#35-array_reverse) |
+|36| array_search |  Searches the array for a given value and returns the first corresponding key if successful. | [Example](#36-array_search) |
+|37| array_shift |  Shift an element off the beginning of array. | [Example](#37-array_shift) |
+|38| array_slice |  Extract a slice of the array. | [Example](#38-array_slice) |
+|39| array_splice |  Remove a portion of the array and replace it with something else. | [Example](#39-array_splice) |
+|40| array_sum |  Calculate the sum of values in an array. | [Example](#40-array_sum) |
+|41| array_udiff_assoc |  Computes the difference of arrays with additional index check, compares data by a callback function. | [Example](#41-array_udiff_assoc) |
+|42| array_udiff_uassoc |  Computes the difference of arrays with additional index check, compares data and indexes by a callback function. | [Example](#42-array_udiff_uassoc) |
+|43| array_udiff |  Computes the difference of arrays by using a callback function for data comparison. | [Example](#43-array_udiff) |
+|44| array_uintersect_assoc |  Computes the intersection of arrays with additional index check, compares data by a callback function. | [Example](#44-array_uintersect_assoc) |
+|45| array_uintersect_uassoc |  Computes the intersection of arrays with additional index check, compares data and indexes by separate callback functions. | [Example](#45-array_uintersect_uassoc) |
+|46| array_uintersect |  Computes the intersection of arrays, compares data by a callback function. | [Example](#46-array_uintersect) |
+|47| array_unique |  Removes duplicate values from an array. | [Example](#47-array_unique) |
+|48| array_unshift |  Prepend one or more elements to the beginning of an array. | [Example](#48-array_unshift) |
+|49| array_values |  Return all the values of an array. | [Example](#49-array_values) |
+|50| array_walk_recursive |  Apply a user function recursively to every member of an array. | [Example](#50-array_walk_recursive) |
+|51| array_walk |  Apply a user supplied function to every member of an array. | [Example](#51-array_walk) |
+|52| array |  Create an array. | [Example](#52-array) |
+|53| arsort |  Sort an array in reverse order and maintain index association. | [Example](#53-arsort) |
+|54| asort |  Sort an array and maintain index association. | [Example](#54-asort) |
+|55| compact |  Create array containing variables and their values. | [Example](#55-compact) |
+|56| count |  Count all elements in an array, or something in an object. | [Example](#56-count) |
+|57| current |  Return the current element in an array. | [Example](#57-current) |
+|58| each |  Return the current key and value pair from an array and advance the array cursor. | [Example](#58-each) |
+|59| end |  Set the internal pointer of an array to its last element. | [Example](#59-end) |
+|60| in_array |  Checks if a value exists in an array. | [Example](#60-in_array) |
+|61| key_exists |  Alias of array_key_exists. | [Example](#61-key_exists) |
+|62| key |  Fetch a key from an array. | [Example](#62-key) |
+|63| krsort |  Sort an array by key in reverse order. | [Example](#63-krsort) |
+|64| ksort |  Sort an array by key. | [Example](#64-ksort) |
+|65| list |  Assign variables as if they were an array. | [Example](#65-list) |
+|66| natcasesort |  Sort an array using a case insensitive "natural order" algorithm. | [Example](#66-natcasesort) |
+|67| natsort |  Sort an array using a "natural order" algorithm. | [Example](#67-natsort) |
+|68| next |  Advance the internal array pointer of an array. | [Example](#68-next) |
+|69| range |  Create an array containing a range of elements. | [Example](#69-range) |
+|70| reset |  Set the internal pointer of an array to its first element. | [Example](#70-reset) |
+|71| rsort |  Sort an array in reverse order. | [Example](#71-rsort) |
+|72| shuffle |  Shuffle an array. | [Example](#72-shuffle) |
+|73| sizeof |  Alias of count. | [Example](#73-sizeof) |
+|74| sort |  Sort an array. | [Example](#74-sort) |
+|75| uasort |  Sort an array with a user-defined comparison function and maintain index association. | [Example](#75-uasort) |
+|76| uksort |  Sort an array by keys using a user-defined comparison function. | [Example](#76-uksort) |
+|77| usort |  Sort an array by values using a user-defined comparison function. | [Example](#77-usort) |
 
 
 ## Roadmap 🗺️
@@ -291,7 +291,42 @@ It divides the original array into smaller arrays, each containing the specified
 The resulting array is a multidimensional array where each element is a chunk of the original array.
 The `array_chunk` function is useful when you want to split an array into smaller chunks.
 
-## 3. array_combine
+
+## 3. array_column
+
+This function returns the values from a single column in the input array.
+
+###### Parameters
+
+- array (Array): The input array.
+- columnKey (String): The column of values to return.
+-
+
+```js
+
+const arr = [
+    { id: 1, name: 'John Doe', age: 20 },
+    { id: 2, name: 'Jane Doe', age: 25 },
+    { id: 3, name: 'Mary Doe', age: 30 },
+    { id: 4, name: 'Mark Doe', age: 35 },
+    { id: 5, name: 'Mike Doe', age: 40 },
+];
+
+const newArr = array_column(arr, 'name'); // ['John Doe', 'Jane Doe', 'Mary Doe', 'Mark Doe', 'Mike Doe']
+
+```
+
+###### Explanation
+
+The `array_column` function takes two parameters: the input array and the column of values to return.
+It returns the values from a single column in the input array.
+The resulting array is an array of values from the specified column.
+The `array_column` function is useful when you want to return the values from a single column in the input array.
+
+
+
+
+## 4. array_combine
 
 This function creates an array by using one array for keys and another for its values.
 
@@ -317,7 +352,7 @@ It creates an array by using the first array for keys and the second array for v
 The resulting array is an object where each key is a key from the first array and each value is a value from the second array.
 The `array_combine` function is useful when you want to create an associative array from two arrays.
 
-## 4. array_count_values
+## 5. array_count_values
 
 This function counts all the values of an array.
 
@@ -338,7 +373,7 @@ The `array_count_values` function takes one parameter: the array of values to co
 It counts all the values of the array and returns an object where each key is a value from the array and each value is the number of times that value appears in the array.
 The `array_count_values` function is useful when you want to count the number of occurrences of each value in an array.
 
-## 5. array_diff_assoc
+## 6. array_diff_assoc
 
 This function computes the difference of arrays in array1 but not in array2 with additional index check.
 
@@ -363,7 +398,7 @@ It computes the difference of arrays in array1 but not in array2 with additional
 The resulting array is an array of values from array1 that are not in array2. 
 The `array_diff_assoc` function is useful when you want to find the difference between two arrays with additional index check.
 
-## 6. array_diff_key
+## 7. array_diff_key
 
 This function computes the difference of arrays that is in array1 but not in array2 using keys for comparison.
 
@@ -390,7 +425,7 @@ The `array_diff_key` function is useful when you want to find the difference bet
 
 
 
-## 7. array_diff_uassoc
+## 8. array_diff_uassoc
 
 This function computes the difference of arrays with additional index check which is performed by a user supplied callback function.
 
@@ -416,7 +451,7 @@ It computes the difference of arrays with additional index check which is perfor
 The resulting array is an array of values from array1 that are not in array2.
 The `array_diff_uassoc` function is useful when you want to find the difference between two arrays with additional index check which is performed by a user supplied callback function.
 
-## 8. array_diff_ukey
+## 9. array_diff_ukey
 
 This function computes the difference of arrays that is in array1 but not in array2 using a callback function on the keys for comparison.
 
@@ -446,7 +481,7 @@ It computes the difference of arrays that is in array1 but not in array2 using a
 The resulting array is an object of values from array1 that are not in array2.
 The `array_diff_ukey` function is useful when you want to find the difference between two arrays using a callback function on the keys for comparison.
 
-### 9. array_diff
+### 10. array_diff
 
 This function computes the difference of arrays.
 
@@ -471,7 +506,7 @@ It computes the difference of arrays.
 The resulting array is an array of values from array1 that are not in array2.
 The `array_diff` function is useful when you want to find the difference between two arrays.
 
-### 10. array_fill_keys
+### 11. array_fill_keys
 
 This function fills an array with values, specifying keys.
 
@@ -492,7 +527,7 @@ It fills an array with values, specifying keys.
 The resulting array is an object where each key is a key from the first array and each value is the value to use for filling.
 The `array_fill_keys` function is useful when you want to fill an array with values, specifying keys.
 
-### 11. array_fill
+### 12. array_fill
 
 This function fills an array with values.
 
@@ -517,7 +552,7 @@ The resulting array is an array of values from array1 that are not in array2.
 The `array_fill` function is useful when you want to fill an array with values.
 
 
-### 12. array_filter
+### 13. array_filter
 
 This function filters elements of an array using a callback function.
 
@@ -541,7 +576,7 @@ The resulting array is an array of values from array1 that are not in array2.
 The `array_filter` function is useful when you want to filter elements of an array using a callback function.
 
 
-### 13. array_flip
+### 14. array_flip
 
 This function exchanges all keys with their associated values in an array.
 
@@ -564,7 +599,7 @@ The resulting array is an object where each key is a value from the first array 
 The `array_flip` function is useful when you want to exchange all keys with their associated values in an array.
 
 
-### 14. array_intersect_assoc
+### 15. array_intersect_assoc
 
 This function computes the intersection of arrays with additional index check.
 
@@ -590,7 +625,7 @@ The resulting array is an array of values from array1 that are also in array2.
 The `array_intersect_assoc` function is useful when you want to find the intersection between two arrays with additional index check.
 
 
-### 15. array_intersect_key
+### 16. array_intersect_key
 
 This function computes the intersection of arrays using keys for comparison.
 
@@ -616,7 +651,7 @@ The resulting array is an object of values from array1 that are also in array2.
 The `array_intersect_key` function is useful when you want to find the intersection between two arrays using keys for comparison.
 
 
-### 16. array_intersect_uassoc
+### 17. array_intersect_uassoc
 
 This function computes the intersection of arrays with additional index check, compares indexes by a callback function.
 
@@ -643,7 +678,7 @@ The resulting array is an array of values from array1 that are also in array2.
 The `array_intersect_uassoc` function is useful when you want to find the intersection between two arrays with additional index check, compares indexes by a callback function.
 
 
-### 17. array_intersect_ukey
+### 18. array_intersect_ukey
 
 This function computes the intersection of arrays using a callback function on the keys for comparison.
 
@@ -674,7 +709,7 @@ The resulting array is an object of values from array1 that are also in array2.
 The `array_intersect_ukey` function is useful when you want to find the intersection between two arrays using a callback function on the keys for comparison.
 
 
-### 18. array_intersect
+### 19. array_intersect
 
 This function computes the intersection of arrays.
 
@@ -700,7 +735,7 @@ The resulting array is an array of values from array1 that are also in array2.
 The `array_intersect` function is useful when you want to find the intersection between two arrays.
 
 
-### 19. array_is_list
+### 20. array_is_list
 
 This function checks if the given array is a list and returns true if the array is a list and false otherwise.
 
@@ -722,7 +757,7 @@ It checks if the given array is a list and returns true if the array is a list a
 The `array_is_list` function is useful when you want to check if the given array is a list.
 
 
-### 20. array_key_exists
+### 21. array_key_exists
 
 This function checks if the given key or index exists in the array.
 
@@ -745,7 +780,7 @@ It checks if the given key or index exists in the array and returns true if the 
 The `array_key_exists` function is useful when you want to check if the given key or index exists in the array.
 
 
-### 21. array_key_first
+### 22. array_key_first
 
 This function gets the first key of an array.
 
@@ -767,7 +802,7 @@ It gets the first key of an array and returns the key.
 The `array_key_first` function is useful when you want to get the first key of an array.
 
 
-### 22. array_key_last
+### 23. array_key_last
 
 This function gets the last key of an array.
 
@@ -789,7 +824,7 @@ It gets the last key of an array and returns the key.
 The `array_key_last` function is useful when you want to get the last key of an array.
 
 
-### 23. array_keys
+### 24. array_keys
 
 This function returns all the keys or a subset of the keys of an array.
 
@@ -811,7 +846,7 @@ It returns all the keys or a subset of the keys of an array.
 The `array_keys` function is useful when you want to get all the keys or a subset of the keys of an array.
 
 
-### 24. array_map
+### 25. array_map
 
 This function applies a callback function to each element of an array and returns the resulting array.
 
@@ -834,7 +869,7 @@ It applies a callback function to each element of an array and returns the resul
 The `array_map` function is useful when you want to apply a callback function to each element of an array and return the resulting array.
 
 
-### 25. array_merge_recursive
+### 26. array_merge_recursive
 
 This function merges two or more arrays recursively.
 
@@ -861,7 +896,7 @@ The resulting array is an object where each key is a key from the first array an
 The `array_merge_recursive` function is useful when you want to merge two or more arrays recursively.
 
 
-### 26. array_merge
+### 27. array_merge
 
 This function merges two or more arrays.
 
@@ -888,7 +923,7 @@ The resulting array is an object where each key is a key from the first array an
 The `array_merge` function is useful when you want to merge two or more arrays.
 
 
-### 27. array_multisort // from array.ts
+### 28. array_multisort
 
 This function sorts multiple or multi-dimensional arrays.
 
@@ -918,7 +953,7 @@ The resulting array is an array of values from the first array sorted by the sor
 The `array_multisort` function is useful when you want to sort multiple or multi-dimensional arrays.
 
 
-### 28. array_pad
+### 29. array_pad
 
 This function pads an array to a specified length with a specified value.
 
@@ -943,30 +978,6 @@ The `array_pad` function takes three parameters: the array to pad, the new size 
 It pads an array to a specified length with a specified value.
 The resulting array is an array of values from the first array padded to the specified length with the specified value.
 The `array_pad` function is useful when you want to pad an array to a specified length with a specified value.
-
-### 29. array_pop
-
-This function pops the element off the end of array.
-
-###### Parameters:
-
-- array (Array): The array to pop.
-
-```js
-
-const arr = [1, 2, 3, 4, 5];
-
-const poppedElement = array_pop(arr); // 5
-
-```
-
-###### Explanation:
-
-The `array_pop` function takes one parameter: the array to pop.
-It pops the element off the end of array.
-The resulting array is an array of values from the first array with the last element removed.
-The `array_pop` function is useful when you want to pop the element off the end of array.
-
 
 ### 30. array_product
 
@@ -994,7 +1005,6 @@ The `array_product` function is useful when you want to calculate the product of
 # Contributing 🤝
 
 Contributions, issues and feature requests are welcome! 😃
-
 Feel free to check [issues page](https://github.com/Bryan-b/jsmimic-php/issues "issues page").
 
 <!-- rules on how to contribute to the project -->
