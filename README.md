@@ -1002,6 +1002,132 @@ The resulting array is an array of values from the first array with the last ele
 The `array_product` function is useful when you want to calculate the product of values in an array.
 
 
+### 31. array_push
+
+This function pushes one or more elements onto the end of an array.
+
+###### Parameters:
+- array (Array): The array to push elements to.
+- ...elements (Any): The elements to push.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const newArr = array_push(arr, 6, 7, 8, 9, 10); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+```
+
+###### Explanation:
+
+The `array_push` function takes two or more parameters: the array to push elements to and the elements to push.
+It pushes one or more elements onto the end of an array.
+The resulting array is an array of values from the first array with the pushed elements.
+The `array_push` function is useful when you want to push one or more elements onto the end of an array.
+
+
+### 32. array_rand
+
+This function picks one or more random keys out of an array.
+
+###### Parameters:
+- array (Array): The array to pick random keys from.
+- num (Number): (Optional) Specifies how many random keys to pick. Default is 1.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const randomKey = array_rand(arr); // 3
+
+```
+
+###### Explanation:
+
+The `array_rand` function takes one or two parameters: the array to pick random keys from and the number of random keys to pick.
+
+It picks one or more random keys out of an array.
+The resulting array is an array of random keys from the first array.
+The `array_rand` function is useful when you want to pick one or more random keys out of an array.
+
+
+### 33. array_reduce
+
+This function reduces an array to a single value by using a callback function.
+
+###### Parameters:
+- array (Array): The array to reduce.
+- callback (Function): The callback function to use for reducing.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sum = array_reduce(arr, (accumulator, currentValue) => accumulator + currentValue); 
+// 15
+
+```
+
+###### Explanation:
+
+The `array_reduce` function takes two parameters: the array to reduce and the callback function to use for reducing.
+It reduces an array to a single value by using a callback function.
+The resulting array is an array of values from the first array reduced to a single value by using a callback function.
+The `array_reduce` function is useful when you want to reduce an array to a single value by using a callback function.
+
+
+### 34. array_replace
+
+This function replaces elements from passed arrays into the first array.
+
+###### Parameters:
+- array1 (Array): The array to replace elements in.
+- array2 (Array): The array to replace elements from.
+
+```js
+
+const arr1 = { name: 'John Doe', age: 20 };
+
+const arr2 = { name: 'Jane Doe', age: 21 };
+
+const replacedArr = array_replace(arr1, arr2); 
+// { name: 'Jane Doe', age: 21 }
+
+``` 
+
+###### Explanation:
+
+The `array_replace` function takes two parameters: the array to replace elements in and the array to replace elements from.
+It replaces elements from passed arrays into the first array.
+The resulting array is an object where each key is a key from the first array and each value is a value from the second array.
+The `array_replace` function is useful when you want to replace elements from passed arrays into the first array.
+
+
+### 35. array_reverse
+
+This function returns an array with elements in reverse order.
+
+###### Parameters:
+- array (Array): The array to reverse.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const reversedArr = array_reverse(arr);
+// [5, 4, 3, 2, 1]
+
+```
+
+###### Explanation:
+
+The `array_reverse` function takes one parameter: the array to reverse.
+It returns an array with elements in reverse order.
+The resulting array is an array of values from the first array in reverse order.
+The `array_reverse` function is useful when you want to return an array with elements in reverse order.
+
+
+
 # Contributing 🤝
 
 Contributions, issues and feature requests are welcome! 😃
