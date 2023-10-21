@@ -1786,6 +1786,389 @@ The resulting array is an array of values from the first array with the callback
 The `key_exists` function is useful when you want to check if a key exists in an array.
 
 
+### 62. krsort
+
+This function sorts an array by key in reverse order.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = krsort(arr);
+// [5, 4, 3, 2, 1]
+
+```
+
+###### Explanation:
+
+The `krsort` function takes one parameter: the array to sort.
+It sorts an array by key in reverse order.
+The resulting array is an array of values from the first array sorted by key in reverse order.
+The `krsort` function is useful when you want to sort an array by key in reverse order.
+
+
+### 63. ksort
+
+This function sorts an array by key.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = ksort(arr);
+// [1, 2, 3, 4, 5]
+
+
+```
+
+###### Explanation:
+
+The `ksort` function takes one parameter: the array to sort.
+It sorts an array by key.
+The resulting array is an array of values from the first array sorted by key.
+The `ksort` function is useful when you want to sort an array by key.
+
+
+### 64. List
+
+This function assigns variables as if they were an array.
+
+###### Parameters:
+- ...variables (Any): The variables to assign.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const [a, b, c, d, e] = List(...arr);
+// a = 1, b = 2, c = 3, d = 4, e = 5
+
+```
+
+###### Explanation:
+
+The `List` function takes one or more parameters: the variables to assign.
+It assigns variables as if they were an array.
+The resulting array is an array of values from the parameters.
+The `List` function is useful when you want to assign variables as if they were an array.
+
+
+### 65. natcasesort
+
+This function sorts an array using a case insensitive "natural order" algorithm.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = natcasesort(arr);
+// [1, 2, 3, 4, 5]
+
+```
+
+###### Explanation:
+
+The `natcasesort` function takes one parameter: the array to sort.
+It sorts an array using a case insensitive "natural order" algorithm.
+The resulting array is an array of values from the first array sorted using a case insensitive "natural order" algorithm.
+The `natcasesort` function is useful when you want to sort an array using a case insensitive "natural order" algorithm.
+
+
+### 66. natsort
+
+This function sorts an array using a "natural order" algorithm.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = natsort(arr);
+
+```
+
+###### Explanation:
+
+The `natsort` function takes one parameter: the array to sort.
+It sorts an array using a "natural order" algorithm.
+The resulting array is an array of values from the first array sorted using a "natural order" algorithm.
+The `natsort` function is useful when you want to sort an array using a "natural order" algorithm.
+
+
+### 67. next
+
+This function advances the internal pointer of an array.
+
+###### Parameters:
+- array (Array): The array to advance the internal pointer of.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const nextElement = next(arr);
+
+```
+
+###### Explanation:
+
+The `next` function takes one parameter: the array to advance the internal pointer of.
+It advances the internal pointer of an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `next` function is useful when you want to advance the internal pointer of an array.
+
+
+### 68. reset
+
+This function resets the internal pointer of an array.
+
+###### Parameters:
+- array (Array): The array to reset the internal pointer of.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const resetElement = reset(arr);
+// 1
+
+```
+
+###### Explanation:
+
+The `reset` function takes one parameter: the array to reset the internal pointer of.
+It resets the internal pointer of an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `reset` function is useful when you want to reset the internal pointer of an array.
+
+
+### 69. rsort
+
+This function sorts an array in reverse order.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = rsort(arr);
+// [5, 4, 3, 2, 1]
+
+```
+
+###### Explanation:
+
+The `rsort` function takes one parameter: the array to sort.
+It sorts an array in reverse order.
+The resulting array is an array of values from the first array sorted in reverse order.
+The `rsort` function is useful when you want to sort an array in reverse order.
+
+
+### 70. shuffle
+
+This function shuffles an array.
+
+###### Parameters:
+
+- array (Array): The array to shuffle.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const shuffledArr = shuffle(arr);
+// [1, 3, 2, 5, 4]
+
+```
+
+###### Explanation:
+
+The `shuffle` function takes one parameter: the array to shuffle.
+It shuffles an array.
+The resulting array is an array of values from the first array shuffled.
+The `shuffle` function is useful when you want to shuffle an array.
+
+
+### 71. sizeof
+
+This function counts all elements in an array or something in an object.
+
+###### Parameters:
+- array (Array): The array to count elements from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+// 5
+
+```
+
+###### Explanation:
+
+The `sizeof` function takes one parameter: the array to count elements from.
+It counts all elements in an array or something in an object.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `sizeof` function is useful when you want to count all elements in an array or something in an object.
+
+
+### 72. sort
+
+This function sorts an array.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = sort(arr);
+// [1, 2, 3, 4, 5]
+
+```
+
+###### Explanation:
+
+The `sort` function takes one parameter: the array to sort.
+It sorts an array.
+The resulting array is an array of values from the first array sorted.
+The `sort` function is useful when you want to sort an array.
+
+
+### 73. uasort
+
+This function sorts an array with a user-defined comparison function and maintains index association.
+
+###### Parameters:
+- array (Array): The array to sort.
+- callback (Function): The callback function to use for comparison.
+
+```js
+
+const arr = { name: 'John Doe', age: 20, height: 1.8 };
+
+const sortedArr = uasort(arr, (a, b) => a - b);
+// { height: 1.8, age: 20, name: 'John Doe' }
+
+```
+
+###### Explanation:
+
+The `uasort` function takes two parameters: the array to sort and the callback function to use for comparison.
+It sorts an array with a user-defined comparison function and maintains index association.
+The resulting array is an array of values from the first array sorted with the callback function applied to each value.
+The `uasort` function is useful when you want to sort an array with a user-defined comparison function and maintain index association.
+
+
+### 74. uksort
+
+This function sorts an array by keys using a user-defined comparison function.
+
+###### Parameters:
+- array (Array): The array to sort.
+- callback (Function): The callback function to use for comparison.
+
+```js
+
+const arr = { name: 'John Doe', age: 20, height: 1.8 };
+
+const sortedArr = uksort(arr, (a, b) => a - b);
+// { age: 20, height: 1.8, name: 'John Doe' }
+
+```
+
+###### Explanation:
+
+The `uksort` function takes two parameters: the array to sort and the callback function to use for comparison.
+It sorts an array by keys using a user-defined comparison function.
+The resulting array is an array of values from the first array sorted with the callback function applied to each value.
+The `uksort` function is useful when you want to sort an array by keys using a user-defined comparison function.
+
+
+### 75. usort
+
+This function sorts an array using a user-defined comparison function.
+
+###### Parameters:
+- array (Array): The array to sort.
+- callback (Function): The callback function to use for comparison.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = usort(arr, (a, b) => a - b);
+
+```
+
+###### Explanation:
+
+The `usort` function takes two parameters: the array to sort and the callback function to use for comparison.
+It sorts an array using a user-defined comparison function.
+The resulting array is an array of values from the first array sorted with the callback function applied to each value.
+The `usort` function is useful when you want to sort an array using a user-defined comparison function.
+
+
+### 76. each
+
+This function returns the current element in an array.
+
+###### Parameters:
+- array (Array): The array to get the current element from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const currentElement = each(arr);
+
+```
+
+###### Explanation:
+
+The `each` function takes one parameter: the array to get the current element from.
+It returns the current element in an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `each` function is useful when you want to return the current element in an array and also do something with it.
+
+
+### 77. range
+
+This function creates an array containing a range of elements.
+
+###### Parameters:
+- start (Number): The start of the range.
+- end (Number): The end of the range.
+- step (Number): The step of the range.
+
+```js
+
+const arr = range(1, 10, 2);
+// [1, 3, 5, 7, 9]
+
+```
+
+###### Explanation:
+
+The `range` function takes three parameters: the start of the range, the end of the range and the step of the range.
+It creates an array containing a range of elements.
+The resulting array is an array of values from the parameters.
+The `range` function is useful when you want to create an array containing a range of elements.
+
+
 
 
 # Contributing 🤝
