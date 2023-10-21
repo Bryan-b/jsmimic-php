@@ -1127,6 +1127,666 @@ The resulting array is an array of values from the first array in reverse order.
 The `array_reverse` function is useful when you want to return an array with elements in reverse order.
 
 
+### 36. array_search
+
+This function searches an array for a given value and returns the corresponding key if successful.
+
+###### Parameters:
+- value (Any): The value to search for.
+- array (Array): The array to search in.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const key = array_search('John Doe', arr);
+// 'name'
+
+```
+
+###### Explanation:
+
+The `array_search` function takes two parameters: the value to search for and the array to search in.
+It searches an array for a given value and returns the corresponding key if successful.
+The resulting array is an array of values from the first array in reverse order.
+The `array_search` function is useful when you want to search an array for a given value and return the corresponding key if successful.
+
+
+### 37. array_shift
+
+This function shifts the first value of the array off and returns it.
+
+###### Parameters:
+- array (Array): The array to shift.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const shiftedValue = array_shift(arr);
+// 1
+
+```
+
+###### Explanation:
+
+The `array_shift` function takes one parameter: the array to shift.
+It shifts the first value of the array off and returns it.
+The resulting array is an array of values from the first array with the first value removed.
+The `array_shift` function is useful when you want to shift the first value of the array off and return it.
+
+
+### 38. array_slice
+
+This function returns a slice of the array.
+
+###### Parameters:
+- array (Array): The array to slice.
+- offset (Number): The offset to start the slice from.
+- length (Number): (Optional) The length of the slice. If length is omitted, the slice will have everything from offset up until the end of the array.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const slicedArr = array_slice(arr, 2, 2);
+// [3, 4]
+
+```
+
+###### Explanation:
+
+The `array_slice` function takes two or three parameters: the array to slice, the offset to start the slice from and the length of the slice.
+It returns a slice of the array.
+The resulting array is an array of values from the first array sliced from the offset to the length.
+The `array_slice` function is useful when you want to return a slice of the array.
+
+
+### 39. array_splice
+
+This function removes a portion of the array and replaces it with something else.
+
+###### Parameters:
+- array (Array): The array to splice.
+- start (Number): The index at which to start changing the array.
+- deleteCount (Number): (Optional) The number of elements in the array to remove from start.
+- elements (Any): (Optional) The elements to add to the array from start.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const splicedArr = array_splice(arr, 2, 2, 6, 7, 8, 9, 10);
+// [1, 2, 6, 7, 8, 9, 10, 5]
+
+```
+
+###### Explanation:
+
+The `array_splice` function takes three or more parameters: the array to splice, the index at which to start changing the array, the number of elements in the array to remove from start and the elements to add to the array from start.
+It removes a portion of the array and replaces it with something else.
+The resulting array is an array of values from the first array with the spliced elements.
+The `array_splice` function is useful when you want to remove a portion of the array and replace it with something else.
+
+
+### 40. array_sum
+
+This function calculates the sum of values in an array.
+
+###### Parameters:
+- array (Array): The array to calculate the sum of values from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sum = array_sum(arr); // 15
+
+```
+
+###### Explanation:
+
+The `array_sum` function takes one parameter: the array to calculate the sum of values from.
+It calculates the sum of values in an array.
+The resulting array is an array of values from the first array with the last element removed.
+The `array_sum` function is useful when you want to calculate the sum of values in an array.
+
+
+### 41. array_udiff_assoc
+
+This function computes the difference of arrays with additional index check, compares data by a callback function.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_udiff_assoc(arr1, arr2, (a, b) => a - b); // [8, 10, 11, 12] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_udiff_assoc` function takes three parameters: the array to compare from, the array to compare against and the callback function to use for comparison.
+It computes the difference of arrays with additional index check, compares data by a callback function.
+The resulting array is an array of values from array1 that are not in array2.
+The `array_udiff_assoc` function is useful when you want to find the difference between two arrays with additional index check, compares data by a callback function.
+
+
+### 42. array_udiff_uassoc
+
+This function computes the difference of arrays with additional index check, compares data and indexes by a callback function.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- dataCompareCallback (Function): The callback function to use for data comparison.
+- indexCompareCallback (Function): The callback function to use for index comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_udiff_uassoc(arr1, arr2, (a, b) => a - b, (a, b) => a - b);
+// [8, 10, 11, 12] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_udiff_uassoc` function takes four parameters: the array to compare from, the array to compare against, the callback function to use for data comparison and the callback function to use for index comparison.
+It computes the difference of arrays with additional index check, compares data and indexes by a callback function.
+The resulting array is an array of values from array1 that are not in array2.
+The `array_udiff_uassoc` function is useful when you want to find the difference between two arrays with additional index check, compares data and indexes by a callback function.
+
+
+### 43. array_udiff
+
+This function computes the difference of arrays by using a callback function for data comparison.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for data comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_udiff(arr1, arr2, (a, b) => a - b); 
+// [8, 10, 11, 12] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_udiff` function takes three parameters: the array to compare from, the array to compare against and the callback function to use for data comparison.
+It computes the difference of arrays by using a callback function for data comparison.
+The resulting array is an array of values from array1 that are not in array2.
+The `array_udiff` function is useful when you want to find the difference between two arrays by using a callback function for data comparison.
+
+
+### 44. array_uintersect_assoc
+
+This function computes the intersection of arrays with additional index check, compares data by a callback function.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for data comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_uintersect_assoc(arr1, arr2, (a, b) => a - b);
+// [1, 2, 3, 4, 5] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_uintersect_assoc` function takes three parameters: the array to compare from, the array to compare against and the callback function to use for data comparison.
+It computes the intersection of arrays with additional index check, compares data by a callback function.
+The resulting array is an array of values from array1 that are also in array2.
+The `array_uintersect_assoc` function is useful when you want to find the intersection between two arrays with additional index check, compares data by a callback function.
+
+
+### 45. array_uintersect_uassoc
+
+This function computes the intersection of arrays with additional index check, compares data and indexes by a callback function.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- dataCompareCallback (Function): The callback function to use for data comparison.
+- indexCompareCallback (Function): The callback function to use for index comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_uintersect_uassoc(arr1, arr2, (a, b) => a - b, (a, b) => a - b);
+// [1, 2, 3, 4, 5] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_uintersect_uassoc` function takes four parameters: the array to compare from, the array to compare against, the callback function to use for data comparison and the callback function to use for index comparison.
+It computes the intersection of arrays with additional index check, compares data and indexes by a callback function.
+The resulting array is an array of values from array1 that are also in array2.
+The `array_uintersect_uassoc` function is useful when you want to find the intersection between two arrays with additional index check, compares data and indexes by a callback function.
+
+
+### 46. array_uintersect
+
+This function computes the intersection of arrays by using a callback function for data comparison.
+
+###### Parameters:
+- array1 (Array): The array to compare from.
+- array2 (Array): An array to compare against.
+- callback (Function): The callback function to use for data comparison.
+
+```js
+
+const arr1 = [1, 2, 3, 4, 5, 8, 10, 11, 12];
+
+const arr2 = [1, 2, 3, 4, 5, 6];
+
+const newArr = array_uintersect(arr1, arr2, (a, b) => a - b);
+// [1, 2, 3, 4, 5] sorted in ascending order
+
+```
+
+###### Explanation:
+
+The `array_uintersect` function takes three parameters: the array to compare from, the array to compare against and the callback function to use for data comparison.
+It computes the intersection of arrays by using a callback function for data comparison.
+The resulting array is an array of values from array1 that are also in array2.
+The `array_uintersect` function is useful when you want to find the intersection between two arrays by using a callback function for data comparison.
+
+
+### 47. array_unique
+
+This function removes duplicate values from an array.
+
+###### Parameters:
+
+- array (Array): The array to remove duplicate values from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5, 5, 4, 3, 2, 1];
+
+const uniqueArr = array_unique(arr);
+
+```
+
+###### Explanation:
+
+The `array_unique` function takes one parameter: the array to remove duplicate values from.
+It removes duplicate values from an array.
+The resulting array is an array of values from the first array with duplicate values removed.
+The `array_unique` function is useful when you want to remove duplicate values from an array.
+
+
+### 48. array_unshift
+
+This function prepends one or more elements to the beginning of an array.
+
+###### Parameters:
+- array (Array): The array to prepend elements to.
+- ...elements (Any): The elements to prepend.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const newArr = array_unshift(arr, 6, 7, 8, 9, 10); 
+// [6, 7, 8, 9, 10, 1, 2, 3, 4, 5]
+
+```
+
+###### Explanation:
+
+The `array_unshift` function takes two or more parameters: the array to prepend elements to and the elements to prepend.
+It prepends one or more elements to the beginning of an array.
+The resulting array is an array of values from the first array with the prepended elements.
+The `array_unshift` function is useful when you want to prepend one or more elements to the beginning of an array.
+
+
+### 49. array_values
+
+This function returns all the values of an array.
+
+###### Parameters:
+- array (Array): The array to get the values from.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const values = array_values(arr); // ['John Doe', 20]
+
+```
+
+###### Explanation:
+
+The `array_values` function takes one parameter: the array to get the values from.
+It returns all the values of an array.
+The resulting array is an array of values from the first array.
+The `array_values` function is useful when you want to get all the values of an array.
+
+
+### 50. array_walk_recursive
+
+This function applies a user function recursively to every member of an array.
+
+###### Parameters:
+- array (Array): The array to apply the callback function to.
+- callback (Function): The callback function to apply.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const newArr = array_walk_recursive(arr, (value, key) => console.log(value, key));
+// 1 0
+
+```
+
+###### Explanation:
+
+The `array_walk_recursive` function takes two parameters: the array to apply the callback function to and the callback function to apply.
+It applies a user function recursively to every member of an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `array_walk_recursive` function is useful when you want to apply a user function recursively to every member of an array.
+
+
+### 51. array_walk
+
+This function applies a user function to every member of an array.
+
+###### Parameters:
+- array (Array): The array to apply the callback function to.
+- callback (Function): The callback function to apply.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const newArr = array_walk(arr, (value, key) => console.log(value, key));
+// 1 0
+
+```
+
+###### Explanation:
+
+The `array_walk` function takes two parameters: the array to apply the callback function to and the callback function to apply.
+It applies a user function to every member of an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `array_walk` function is useful when you want to apply a user function to every member of an array.
+
+
+### 52. array
+
+This function creates an array.
+
+###### Parameters:
+- ...elements (Any): The elements to add to the array.
+
+```js
+
+const arr = array(1, 2, 3, 4, 5);
+// [1, 2, 3, 4, 5]
+
+```
+
+###### Explanation:
+
+The `array` function takes one or more parameters: the elements to add to the array.
+It creates an array.
+The resulting array is an array of values from the parameters.
+The `array` function is useful when you want to create an array.
+
+
+### 53. arsort
+
+This function sorts an array in reverse order and maintains index association.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = arsort(arr);
+// [5, 4, 3, 2, 1]
+
+```
+
+###### Explanation:
+
+The `arsort` function takes one parameter: the array to sort.
+It sorts an array in reverse order and maintains index association.
+The resulting array is an array of values from the first array sorted in reverse order.
+The `arsort` function is useful when you want to sort an array in reverse order and maintain index association.
+
+
+### 54. asort
+
+This function sorts an array and maintains index association.
+
+###### Parameters:
+- array (Array): The array to sort.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const sortedArr = asort(arr);
+// [1, 2, 3, 4, 5]
+
+```
+
+###### Explanation:
+
+The `asort` function takes one parameter: the array to sort.
+It sorts an array and maintains index association.
+The resulting array is an array of values from the first array sorted.
+The `asort` function is useful when you want to sort an array and maintain index association.
+
+
+### 55. compact
+
+This function creates an array containing variables and their values.
+
+###### Parameters:
+- ...variables (Any): The variables to add to the array.
+
+```js
+
+const name = 'John Doe';
+
+const age = 20;
+
+const arr = compact(name, age);
+// { name: 'John Doe', age: 20 }
+
+```
+
+###### Explanation:
+
+The `compact` function takes one or more parameters: the variables to add to the array.
+It creates an array containing variables and their values.
+The resulting array is an array of values from the parameters.
+The `compact` function is useful when you want to create an array containing variables and their values.
+
+
+### 56. count
+
+This function counts all elements in an array or something in an object.
+
+###### Parameters:
+- array (Array): The array to count elements from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const count = count(arr);
+// 5
+
+```
+
+###### Explanation:
+
+The `count` function takes one parameter: the array to count elements from.
+It counts all elements in an array or something in an object.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `count` function is useful when you want to count all elements in an array or something in an object.
+
+
+### 57. current
+
+This function returns the current element in an array.
+
+###### Parameters:
+- array (Array): The array to get the current element from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const currentElement = current(arr);
+// 1
+
+```
+
+###### Explanation:
+
+The `current` function takes one parameter: the array to get the current element from.
+It returns the current element in an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `current` function is useful when you want to return the current element in an array.
+
+
+### 58. each
+
+This function returns the current element in an array.
+
+###### Parameters:
+- array (Array): The array to get the current element from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const currentElement = each(arr);
+// 1
+
+```
+
+###### Explanation:
+
+The `each` function takes one parameter: the array to get the current element from.
+It returns the current element in an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `each` function is useful when you want to return the current element in an array.
+
+
+### 59. end
+
+This function returns the last element in an array.
+
+###### Parameters:
+- array (Array): The array to get the last element from.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const lastElement = end(arr);
+// 5
+
+```
+
+###### Explanation:
+
+The `end` function takes one parameter: the array to get the last element from.
+It returns the last element in an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `end` function is useful when you want to return the last element in an array.
+
+
+### 60. in_array
+
+This function checks if a value exists in an array.
+
+###### Parameters:
+- value (Any): The value to check for.
+- array (Array): The array to check in.
+
+```js
+
+const arr = [1, 2, 3, 4, 5];
+
+const exists = in_array(3, arr);
+// true
+
+
+```
+
+###### Explanation:
+
+The `in_array` function takes two parameters: the value to check for and the array to check in.
+It checks if a value exists in an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `in_array` function is useful when you want to check if a value exists in an array.
+
+
+### 61. key_exists
+
+This function checks if a key exists in an array.
+
+###### Parameters:
+- key (Any): The key to check for.
+- array (Array): The array to check in.
+
+```js
+
+const arr = { name: 'John Doe', age: 20 };
+
+const exists = key_exists('name', arr);
+// true
+
+```
+
+###### Explanation:
+
+The `key_exists` function takes two parameters: the key to check for and the array to check in.
+It checks if a key exists in an array.
+The resulting array is an array of values from the first array with the callback function applied to each value.
+The `key_exists` function is useful when you want to check if a key exists in an array.
+
+
+
 
 # Contributing 🤝
 
