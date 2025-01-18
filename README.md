@@ -2,6 +2,10 @@
 
 `jsmimic-php` is a JS library that allows you to mimic PHP functions in JavaScript. This library is useful for people who are familiar with PHP and want to use JavaScript but don't have the time to learn the JavaScript equivalents of PHP functions.
 
+# Why jsmimic-php?
+Effortless Transition: No need to rewrite your PHP logic from scratch. Use PHP functions directly in JavaScript.
+Performance Optimized: Lightweight and highly efficient, ensuring your applications run smoothly.
+Versatile: Ideal for full-stack developers working with both PHP and JavaScript.
 
 # Installation 🛠️
 
